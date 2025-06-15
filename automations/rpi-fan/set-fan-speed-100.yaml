@@ -1,0 +1,15 @@
+id: '1724434905131'
+alias: Set CPU fan speed to 100% when temperature is above 55
+description: ''
+trigger:
+  - platform: numeric_state
+    entity_id: sensor.system_monitor_processor_temperature
+    above: '55'
+condition: []
+action:
+  - service: fan.set_percentage
+    target:
+      entity_id: fan.rpi_cooling_fan
+    data:
+      percentage: 100
+mode: single

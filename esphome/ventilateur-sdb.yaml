@@ -1,0 +1,34 @@
+substitutions:
+  name: ventilateur-sdb
+  friendly_name: Ventilateur Salle de Bain
+packages:
+  base: !include common/base.yaml
+
+esphome:
+  name: ${name}
+  name_add_mac_suffix: false
+  friendly_name: ${friendly_name}
+
+esp32:
+  board: esp32dev
+  framework:
+    type: arduino
+api:
+  encryption:
+    key: PVc+RKdJkSmTGm8FQ8vkjz0y2TxZKMn9afxm1AiM5r4=
+    
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+# status de la led du signal wifi
+status_led:
+  pin: GPIO2
+
+switch:
+  - platform: gpio
+    name: "${friendly_name} Relay"
+    icon: mdi:switch
+    pin: GPIO4
+    id: relais1
+

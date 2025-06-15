@@ -1,0 +1,67 @@
+- id: '1732914939568'
+  alias: Turn off CPU fan when temperature is below 37
+  description: ''
+  triggers:
+  - entity_id: sensor.system_monitor_processor_temperature
+    below: '40'
+    trigger: numeric_state
+  conditions: []
+  actions:
+  - target:
+      entity_id: fan.rpi_cooling_fan
+    action: fan.turn_off
+    data: {}
+  mode: single
+- id: '1732914955017'
+  alias: Set CPU fan to normal speed when temp is below 38
+  description: ''
+  triggers:
+  - entity_id: sensor.system_monitor_processor_temperature
+    above: '40'
+    trigger: numeric_state
+  conditions: []
+  actions:
+  - target:
+      entity_id: fan.rpi_cooling_fan
+    data:
+      percentage: 50
+    action: fan.set_percentage
+  mode: single
+- id: '1732914964766'
+  alias: Set CPU fan speed to 100% when temperature is above 55
+  description: ''
+  triggers:
+  - entity_id: sensor.system_monitor_processor_temperature
+    above: '55'
+    trigger: numeric_state
+  conditions: []
+  actions:
+  - target:
+      entity_id: fan.rpi_cooling_fan
+    data:
+      percentage: 100
+    action: fan.set_percentage
+  mode: single
+- id: '1732914986292'
+  alias: Set CPU fan speed on startup
+  description: ''
+  triggers:
+  - event: start
+    trigger: homeassistant
+  conditions: []
+  actions:
+  - target:
+      entity_id: fan.rpi_cooling_fan
+    data:
+      percentage: 25
+    action: fan.set_percentage
+  mode: single
+- id: '1736172421168'
+  description: ''
+  triggers:
+  - entity_id: switch.volume_down
+    to: 'on'
+    trigger: state
+  conditions: []
+  actions: []
+  mode: single

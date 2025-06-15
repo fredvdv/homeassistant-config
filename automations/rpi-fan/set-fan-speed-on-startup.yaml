@@ -1,0 +1,14 @@
+id: '1724434905130'
+alias: Set CPU fan speed on startup
+description: ''
+trigger:
+  - platform: homeassistant
+    event: start
+condition: []
+action:
+  - service: fan.set_percentage
+    target:
+      entity_id: fan.rpi_cooling_fan
+    data:
+      percentage: 25
+mode: single

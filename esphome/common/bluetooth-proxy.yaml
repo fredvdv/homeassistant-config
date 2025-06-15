@@ -1,0 +1,73 @@
+###
+###
+###
+
+web_server:
+  port: 80
+
+time:
+  - platform: sntp
+    id: sntp_time
+    timezone: Europe/Brussels
+    servers:
+      - 0.at.pool.ntp.org
+      - 0.pool.ntp.org
+      - 1.pool.ntp.org
+    on_time_sync:
+      then:
+        - logger.log: "Synchronized sntp clock"
+  - platform: homeassistant
+    on_time:
+      - seconds: 0
+        minutes: 0
+        hours: 4
+        days_of_week: MON-SUN
+        then:
+          - switch.toggle: restart_device
+
+binary_sensor:
+  - platform: status
+    name: ${friendly_name} - Status
+
+switch:
+  - platform: restart
+    id: restart_device
+    name: Restart device
+
+sensor:
+  - platform: wifi_signal
+    id: wifisignal
+    name: WiFi Signal
+    update_interval: 60s
+
+text_sensor:
+  - platform: version
+    name: Version
+    id: appver
+
+  - platform: template
+    name: Uptime
+    id: uptime_human
+    icon: mdi:clock-start
+
+  - platform: wifi_info
+    ip_address:
+      name: IP
+      id: wifiip
+      icon: mdi:ip-network
+
+    ssid:
+      name: SSID
+      id: wifiip_ssid
+      icon: mdi:wifi
+
+    bssid:
+      name: BSSID
+      id: wifiip_bssid
+      icon: mdi:wifi
+
+    mac_address:
+      name: Mac Address
+      id: wifimac_address
+      icon: mdi:wifi
+

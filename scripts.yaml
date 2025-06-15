@@ -1,0 +1,109 @@
+multi_tap_action:
+  alias: Multi Tap Action
+  sequence:
+  - repeat:
+      for_each: '{{actions}}'
+      sequence:
+      - if:
+        - condition: template
+          value_template: '{{repeat.item.entity_id is not defined and repeat.item.data
+            is not defined }}'
+        then:
+          action: '{{ repeat.item.service }}'
+      - if:
+        - condition: template
+          value_template: '{{repeat.item.entity_id is defined and repeat.item.data
+            is not defined }}'
+        then:
+          target:
+            entity_id: '{{repeat.item.entity_id}}'
+          action: '{{ repeat.item.service }}'
+      - if:
+        - condition: template
+          value_template: '{{repeat.item.entity_id is not defined and repeat.item.data
+            is defined }}'
+        then:
+          data: '{{ repeat.item.data }}'
+          action: '{{ repeat.item.service }}'
+      - if:
+        - condition: template
+          value_template: '{{repeat.item.entity_id is defined and repeat.item.data
+            is defined }}'
+        then:
+          target:
+            entity_id: '{{repeat.item.entity_id}}'
+          data: '{{ repeat.item.data }}'
+          action: '{{ repeat.item.service }}'
+      - if:
+        - condition: template
+          value_template: '{{repeat.item.wait is defined}}'
+        then:
+        - delay:
+            hours: 0
+            minutes: 0
+            seconds: 0
+            milliseconds: '{{repeat.item.wait | float}}'
+switch_tv_channel:
+  alias: Switch TV Channel
+  sequence:
+  - action: remote.send_command
+    entity_id: remote.artemis
+    data:
+      command: HOME
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 0
+      milliseconds: 300
+  - repeat:
+      for_each: '{{ channel }}'
+      sequence:
+      - action: media_player.play_media
+        entity_id: media_player.artemis
+        data:
+          media_content_type: channel
+          media_content_id: '{{ repeat.item }}'
+      - delay:
+          hours: 0
+          minutes: 0
+          seconds: 0
+          milliseconds: 300
+  description: ''
+remote_toggle_power:
+  sequence:
+  - action: input_boolean.toggle
+    data: {}
+    target:
+      entity_id: '{{ boolean_entity }}'
+  - action: remote.toggle
+    data: {}
+    target:
+      entity_id: '{{ remote_entity }}'
+  alias: Remote Toggle Power
+  description: ''
+remote_send_command_with_toggle:
+  sequence:
+  - action: input_boolean.toggle
+    data: {}
+    target:
+      entity_id: '{{ boolean_entity }}'
+  - repeat:
+      for_each: '{{ commands }}'
+      sequence:
+      - action: remote.send_command
+        data:
+          device: '{{ device }}'
+          command: '{{ repeat.item.command }}'
+        target:
+          entity_id: '{{ remote_entity }}'
+      - if:
+        - condition: template
+          value_template: '{{ repeat.item.wait is defined }}'
+        then:
+          delay:
+            hours: 0
+            minutes: 0
+            seconds: 0
+            milliseconds: '{{ repeat.item.wait | float }}'
+  alias: Remote Send Command with Toggle
+  description: ''

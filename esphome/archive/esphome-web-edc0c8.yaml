@@ -1,0 +1,33 @@
+packages:
+  base: !include common/base.yaml
+  bleproxy: !include common/ble-proxy.yaml
+
+substitutions:
+  device_name: esphome-web-edc0c8
+  friendly_name: "BLE Proxy 3"
+
+esphome:
+  name: ${device_name}
+  friendly_name: ${friendly_name}
+
+
+  #- platform: gpio
+  #  name: "Relay_1"
+  #  pin: 14
+  #  inverted: True
+  #  restore_mode: RESTORE_DEFAULT_OFF
+  #- platform: gpio
+  #  name: "Relay_2"
+  #  pin: 27
+  #  inverted: True
+  #  restore_mode: RESTORE_DEFAULT_OFF
+  #- platform: gpio
+  #  name: "Relay_3"
+  #  pin: 26
+  #  inverted: True
+  #  restore_mode: RESTORE_DEFAULT_OFF
+  #- platform: gpio
+  #  name: "Relay_4"
+  #  pin: 25
+  #  inverted: True
+  #  restore_mode: RESTORE_DEFAULT_OFF

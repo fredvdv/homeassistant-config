@@ -1,0 +1,15 @@
+id: "1724434905132"
+alias: Set CPU fan to normal speed when temp is below 38
+description: ""
+trigger:
+  - platform: numeric_state
+    entity_id: sensor.system_monitor_processor_temperature
+    above: "40"
+condition: []
+action:
+  - service: fan.set_percentage
+    target:
+      entity_id: fan.rpi_cooling_fan
+    data:
+      percentage: 50
+mode: single

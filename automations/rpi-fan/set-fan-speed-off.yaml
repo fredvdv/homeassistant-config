@@ -1,0 +1,13 @@
+id: '1724434905133'
+alias: Turn off CPU fan when temperature is below 37
+description: ''
+trigger:
+  - platform: numeric_state
+    entity_id: sensor.system_monitor_processor_temperature
+    below: '40'
+condition: []
+action:
+  - service: fan.turn_off
+    target:
+      entity_id: fan.rpi_cooling_fan
+mode: single

@@ -1,0 +1,14 @@
+packages:
+  base: !include common/base.yaml
+  bleproxy: !include common/bleproxy.yaml
+
+substitutions:
+  device_name: esphome-web-ee2b8c
+  friendly_name: "BLE Proxy 1"
+
+esphome:
+  name: ${device_name}
+  friendly_name: ${friendly_name}
+
+logger:
+  level: VERY_VERBOSE
