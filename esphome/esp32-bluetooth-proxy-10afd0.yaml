@@ -1,6 +1,6 @@
 substitutions:
   name: esp32-bluetooth-proxy-10afd0
-  friendly_name: Bluetooth Proxy 10afd0
+  friendly_name: Bluetooth Proxy Etage (10afd0)
 packages:
   esphome.bluetooth-proxy: github://esphome/bluetooth-proxies/esp32-generic/esp32-generic.yaml@main
   base: !include common/base.yaml
