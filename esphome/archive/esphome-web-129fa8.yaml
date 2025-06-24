@@ -1,0 +1,43 @@
+substitutions:
+  name: esphome-web-129fa8
+  friendly_name: ESPHome Web 129fa8
+packages:
+  base: !include common/base.yaml
+
+esphome:
+  name: ${name}
+  name_add_mac_suffix: false
+  friendly_name: ${friendly_name}
+
+esp32:
+  board: esp32dev
+  framework:
+    type: arduino
+
+api:
+  encryption:
+    key: RXR3bYhhfGhAyJgIRypD1zIGWHCBrkS0HDAC6DPBBBK=
+    
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+i2c:
+  sda: GPIO21
+  scl: GPIO22
+
+sensor:
+  - platform: ina219
+    address: 0x40
+    shunt_resistance: 0.1 ohm
+    current:
+      name: "INA219 Current"
+    power:
+      name: "INA219 Power"
+    bus_voltage:
+      name: "INA219 Bus Voltage"
+    shunt_voltage:
+      name: "INA219 Shunt Voltage"
+    max_voltage: 24.0V
+    max_current: 3.2A
+    update_interval: 60s

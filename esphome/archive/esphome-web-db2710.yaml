@@ -1,0 +1,24 @@
+substitutions:
+  name: esphome-web-db2710
+  friendly_name: ESPHome Web db2710
+packages:
+  base: !include common/base.yaml
+
+esphome:
+  name: ${name}
+  name_add_mac_suffix: false
+  friendly_name: ${friendly_name}
+
+esp32:
+  board: esp32dev
+  framework:
+    type: arduino
+
+api:
+  encryption:
+    key: RXR3bYhhfGhAyJgIRypD1zIGWHCBrkS0HDAC6DPBBBK=
+    
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
