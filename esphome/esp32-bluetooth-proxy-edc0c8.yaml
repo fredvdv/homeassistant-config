@@ -1,6 +1,6 @@
 substitutions:
   name: esp32-bluetooth-proxy-edc0c8
-  friendly_name: Bluetooth Proxy spare (edc0c8)
+  friendly_name: Bluetooth Proxy Cave (edc0c8)
 
 packages:
   esphome.bluetooth-proxy: github://esphome/bluetooth-proxies/esp32-generic/esp32-generic.yaml@main
