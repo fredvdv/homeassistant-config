@@ -107,3 +107,53 @@ remote_send_command_with_toggle:
             milliseconds: '{{ repeat.item.wait | float }}'
   alias: Remote Send Command with Toggle
   description: ''
+turn_off_tv:
+  sequence:
+  - action: remote.send_command
+    metadata: {}
+    data:
+      device: ampli
+      command: Power
+    target:
+      device_id: c1126dd0c253f68b8452d2e6ff9facef
+    alias: Turn on Ampli
+  - action: remote.turn_on
+    metadata: {}
+    data: {}
+    target:
+      device_id: 50fcc120ed4734a5e73717b325999155
+    alias: Turn on Proximus
+  - action: remote.send_command
+    metadata: {}
+    data:
+      device: television
+      command: Power
+    target:
+      device_id: c1126dd0c253f68b8452d2e6ff9facef
+  alias: Turn On TV
+  description: ''
+turn_off_tv_2:
+  sequence:
+  - action: remote.send_command
+    metadata: {}
+    data:
+      device: ampli
+      command: Power
+    target:
+      device_id: c1126dd0c253f68b8452d2e6ff9facef
+    alias: Turn off Ampli
+  - action: remote.turn_off
+    metadata: {}
+    data: {}
+    target:
+      device_id: 50fcc120ed4734a5e73717b325999155
+    alias: Turn off Proximus
+  - action: remote.send_command
+    metadata: {}
+    data:
+      device: television
+      command: Power
+    target:
+      device_id: c1126dd0c253f68b8452d2e6ff9facef
+  alias: Turn Off TV
+  description: ''
