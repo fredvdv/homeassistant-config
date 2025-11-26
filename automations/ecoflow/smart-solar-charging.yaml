@@ -1,0 +1,73 @@
+id: ecoflow_smart_solar_charging
+alias: "EcoFlow - Smart Solar Charging"
+description: "Charge EcoFlow Delta 2 Max only when producing solar surplus"
+mode: restart
+trigger:
+  - platform: state
+    entity_id: sensor.electricity_surplus
+    id: surplus_changed
+  - platform: time_pattern
+    minutes: "/5"
+    id: periodic_check
+action:
+  - choose:
+      # CASE 1: Stop if battery full
+      - conditions:
+          - condition: numeric_state
+            entity_id: sensor.delta_2_max_0868_battery_level
+            above: 98
+        sequence:
+          - service: switch.turn_off
+            target:
+              entity_id: switch.ecoflow
+          - service: logbook.log
+            data:
+              name: "EcoFlow Charging"
+              message: "Stopped - Battery full"
+
+      # CASE 2: Start if surplus > 500W and battery < 95%
+      - conditions:
+          - condition: numeric_state
+            entity_id: sensor.electricity_surplus
+            above: 0.5
+          - condition: numeric_state
+            entity_id: sensor.delta_2_max_0868_battery_level
+            below: 95
+        sequence:
+          - service: switch.turn_on
+            target:
+              entity_id: switch.ecoflow
+          - delay:
+              seconds: 30
+          # Adjust charging power based on surplus
+          - service: number.set_value
+            target:
+              entity_id: number.delta_2_max_0868_ac_charging_power
+            data:
+              value: >
+                {% set surplus_watts = states('sensor.electricity_surplus') | float(0) * 1000 %}
+                {% set target_power = (surplus_watts * 0.8) | int %}
+                {{ [[target_power, 200] | max, 2400] | min }}
+          - service: logbook.log
+            data:
+              name: "EcoFlow Charging"
+              message: "Started - Surplus {{ states('sensor.electricity_surplus') }} kW"
+
+      # CASE 3: Stop if surplus < 200W for 5 minutes
+      - conditions:
+          - condition: numeric_state
+            entity_id: sensor.electricity_surplus
+            below: 0.2
+          - condition: state
+            entity_id: switch.ecoflow
+            state: "on"
+            for:
+              minutes: 5
+        sequence:
+          - service: switch.turn_off
+            target:
+              entity_id: switch.ecoflow
+          - service: logbook.log
+            data:
+              name: "EcoFlow Charging"
+              message: "Stopped - Insufficient surplus"

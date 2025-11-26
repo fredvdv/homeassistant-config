@@ -1,0 +1,14 @@
+id: '1736172421168'
+alias: Volume Down
+trigger:
+  - entity_id: switch.volume_down
+    to: 'on'
+    trigger: state
+action:
+  - action: remote.send_command
+    target:
+      entity_id: remote.artemis
+    data:
+      device: ampli
+      command: Volume_Down
+mode: single

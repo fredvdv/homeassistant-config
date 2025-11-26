@@ -1,0 +1,1627 @@
+kiosk_mode:
+  hide_header: true
+button_card_templates:
+  inkwell:
+    show_name: false
+    show_state: true
+    extra_styles: |
+      [[[ return `
+        @keyframes pulse {
+          5% {
+            background-color: ${variables.color};
+          }
+        }
+      `]]]
+    styles:
+      icon:
+        - opacity: 0.7
+        - color: '[[[ return variables.color ]]]'
+        - filter: drop-shadow( 0 0 2px rgba(0, 0, 0, .7))
+      state:
+        - font-size: 1.5em
+        - font-weight: bold
+        - text-shadow: 0 0 6px black
+        - overflow: visible
+      card:
+        - border: solid 3px gray
+        - border-top: none
+        - background: |
+            [[[
+              var level = entity.state;
+              var color = variables.color;
+              return `linear-gradient(to top, ${color}, ${color} ${level}%, rgba(255,255,255,0.12) ${level}%)`
+            ]]]
+        - animation: |
+            [[[
+              return (0 + entity.state) < 10
+                ? 'pulse ease-in-out 1s infinite'
+                : 'none'
+            ]]]
+views:
+  - title: HOME
+    path: mushroom
+    visible: true
+    icon: ''
+    subview: false
+    badges: []
+    cards:
+      - type: custom:mushroom-title-card
+        title: ''
+      - type: horizontal-stack
+        cards:
+          - type: custom:mushroom-chips-card
+            chips:
+              - type: back
+            alignment: start
+          - type: custom:mushroom-chips-card
+            chips:
+              - type: entity
+                entity: sensor.xiaomi_temperature_exterieur_temperature
+            alignment: center
+          - type: custom:mushroom-chips-card
+            chips:
+              - type: entity
+                entity: sensor.xiaomi_temperature_exterieur_humidity
+            alignment: center
+          - type: custom:mushroom-chips-card
+            chips:
+              - type: menu
+            alignment: end
+      - type: weather-forecast
+        show_current: true
+        show_forecast: false
+        entity: weather.forecast_home
+        forecast_type: daily
+        name: ' '
+      - type: horizontal-stack
+        cards:
+          - type: custom:mushroom-template-card
+            icon: mdi:lamp
+            icon_color: |-
+              {% if is_state("switch.lampe_salon_socket_1", 'on') %} 
+                blue
+              {% else %} 
+                grey
+              {% endif %}
+            layout: vertical
+            multiline_secondary: false
+            entity: switch.lampe_salon_socket_1
+            fill_container: true
+          - type: custom:mushroom-template-card
+            icon: mdi:globe-light
+            icon_color: |-
+              {% if is_state("switch.sonoff_10021d95c4_1", 'on') %} 
+                yellow
+              {% else %} 
+                grey
+              {% endif %}
+            layout: vertical
+            multiline_secondary: false
+            entity: switch.sonoff_10021d95c4_1
+          - type: custom:mushroom-template-card
+            icon: mdi:chandelier
+            icon_color: |-
+              {% if is_state("switch.sonoff_10021daa4c_1", 'on') %} 
+                green
+              {% else %} 
+                grey
+              {% endif %}
+            layout: vertical
+            multiline_secondary: false
+            entity: switch.sonoff_10021daa4c_1
+          - type: custom:mushroom-template-card
+            icon: mdi:television-classic
+            icon_color: |-
+              {% if is_state("switch.television_salon_socket_1", 'on') %} 
+                red
+              {% else %} 
+                grey
+              {% endif %}
+            layout: vertical
+            multiline_secondary: false
+            entity: switch.television_salon_socket_1
+      - type: custom:stack-in-card
+        mode: horizontal
+        cards:
+          - type: custom:mushroom-person-card
+            entity: person.fred
+            secondary_info: none
+            use_entity_picture: true
+            tap_action:
+              action: navigate
+              navigation_path: chambre-fred
+            double_tap_action:
+              action: none
+            hold_action:
+              action: none
+            icon_type: entity-picture
+            card_mod:
+              style: |
+                ha-card {
+                  background-color: rgba(0,0,0,0);
+                  box-shadow: none;
+                  border-style: hidden;
+                }
+          - type: vertical-stack
+            cards:
+              - type: custom:mushroom-chips-card
+                chips:
+                  - type: entity
+                    entity: sensor.chambre_fred_battery
+                    card_mod:
+                      style: |
+                        ha-card {
+                          background-color: rgba(0,0,0,0);
+                          box-shadow: none;
+                          border-style: hidden;
+                        }
+                  - type: entity
+                    entity: sensor.chambre_fred_temperature
+                    card_mod:
+                      style: |
+                        ha-card {
+                          background-color: rgba(0,0,0,0);
+                          box-shadow: none;
+                          border-style: hidden;
+                        }
+                  - type: entity
+                    entity: sensor.chambre_fred_humidity
+                    card_mod:
+                      style: |
+                        ha-card {
+                          background-color: rgba(0,0,0,0);
+                          box-shadow: none;
+                          border-style: hidden;
+                        }
+                alignment: end
+                card_mod:
+                  style: |
+                    ha-card {
+                      background-color: rgba(0,0,0,0);
+                      box-shadow: none;
+                      border-style: hidden;
+                    }
+      - type: custom:stack-in-card
+        mode: horizontal
+        cards:
+          - type: custom:mushroom-person-card
+            entity: person.espen
+            secondary_info: none
+            use_entity_picture: true
+            tap_action:
+              action: navigate
+              navigation_path: chambre-espen
+            double_tap_action:
+              action: none
+            hold_action:
+              action: none
+            icon_type: entity-picture
+            card_mod:
+              style: |
+                ha-card {
+                  background-color: rgba(0,0,0,0);
+                  box-shadow: none;
+                  border-style: hidden;
+                }
+          - type: vertical-stack
+            cards:
+              - type: custom:mushroom-chips-card
+                chips:
+                  - type: entity
+                    entity: sensor.chambre_espen_battery
+                    card_mod:
+                      style: |
+                        ha-card {
+                          background-color: rgba(0,0,0,0);
+                          box-shadow: none;
+                          border-style: hidden;
+                        }
+                  - type: entity
+                    entity: sensor.chambre_espen_temperature
+                    card_mod:
+                      style: |
+                        ha-card {
+                          background-color: rgba(0,0,0,0);
+                          box-shadow: none;
+                          border-style: hidden;
+                        }
+                  - type: entity
+                    entity: sensor.chambre_espen_humidity
+                    card_mod:
+                      style: |
+                        ha-card {
+                          background-color: rgba(0,0,0,0);
+                          box-shadow: none;
+                          border-style: hidden;
+                        }
+                alignment: end
+                card_mod:
+                  style: |
+                    ha-card {
+                      background-color: rgba(0,0,0,0);
+                      box-shadow: none;
+                      border-style: hidden;
+                    }
+      - type: custom:stack-in-card
+        mode: horizontal
+        cards:
+          - type: custom:mushroom-person-card
+            entity: person.amelie
+            secondary_info: none
+            use_entity_picture: true
+            tap_action:
+              action: navigate
+              navigation_path: chambre-amelie
+            double_tap_action:
+              action: none
+            hold_action:
+              action: none
+            icon_type: entity-picture
+            card_mod:
+              style: |
+                ha-card {
+                  background-color: rgba(0,0,0,0);
+                  box-shadow: none;
+                  border-style: hidden;
+                }
+          - type: vertical-stack
+            cards:
+              - type: custom:mushroom-chips-card
+                chips:
+                  - type: entity
+                    entity: sensor.chambre_amelie_battery
+                    card_mod:
+                      style: |
+                        ha-card {
+                          background-color: rgba(0,0,0,0);
+                          box-shadow: none;
+                          border-style: hidden;
+                        }
+                  - type: entity
+                    entity: sensor.chambre_amelie_temperature
+                    card_mod:
+                      style: |
+                        ha-card {
+                          background-color: rgba(0,0,0,0);
+                          box-shadow: none;
+                          border-style: hidden;
+                        }
+                  - type: entity
+                    entity: sensor.chambre_amelie_humidity
+                    card_mod:
+                      style: |
+                        ha-card {
+                          background-color: rgba(0,0,0,0);
+                          box-shadow: none;
+                          border-style: hidden;
+                        }
+                alignment: end
+                card_mod:
+                  style: |
+                    ha-card {
+                      background-color: rgba(0,0,0,0);
+                      box-shadow: none;
+                      border-style: hidden;
+                    }
+      - type: custom:stack-in-card
+        mode: horizontal
+        cards:
+          - type: custom:mushroom-person-card
+            entity: person.thomas
+            secondary_info: none
+            use_entity_picture: true
+            tap_action:
+              action: navigate
+              navigation_path: chambre-thomas
+            double_tap_action:
+              action: none
+            hold_action:
+              action: none
+            icon_type: entity-picture
+            card_mod:
+              style: |
+                ha-card {
+                  background-color: rgba(0,0,0,0);
+                  box-shadow: none;
+                  border-style: hidden;
+                }
+          - type: vertical-stack
+            cards:
+              - type: custom:mushroom-chips-card
+                chips:
+                  - type: entity
+                    entity: sensor.chambre_thomas_battery
+                    card_mod:
+                      style: |
+                        ha-card {
+                          background-color: rgba(0,0,0,0);
+                          box-shadow: none;
+                          border-style: hidden;
+                        }
+                  - type: entity
+                    entity: sensor.chambre_thomas_temperature
+                    card_mod:
+                      style: |
+                        ha-card {
+                          background-color: rgba(0,0,0,0);
+                          box-shadow: none;
+                          border-style: hidden;
+                        }
+                  - type: entity
+                    entity: sensor.chambre_thomas_humidity
+                    card_mod:
+                      style: |
+                        ha-card {
+                          background-color: rgba(0,0,0,0);
+                          box-shadow: none;
+                          border-style: hidden;
+                        }
+                alignment: end
+                card_mod:
+                  style: |
+                    ha-card {
+                      background-color: rgba(0,0,0,0);
+                      box-shadow: none;
+                      border-style: hidden;
+                    }
+      - type: custom:stack-in-card
+        mode: horizontal
+        cards:
+          - type: custom:mushroom-template-card
+            layout: horizontal
+            icon: mdi:sofa
+            primary: Salon
+            tap_action:
+              action: navigate
+              navigation_path: salon
+            double_tap_action:
+              action: none
+            hold_action:
+              action: none
+            card_mod:
+              style: |
+                ha-card {
+                  background-color: rgba(0,0,0,0);
+                  box-shadow: none;
+                  border-style: hidden;
+                }
+          - type: vertical-stack
+            cards:
+              - type: custom:mushroom-chips-card
+                chips:
+                  - type: entity
+                    entity: sensor.salon_battery
+                    card_mod:
+                      style: |
+                        ha-card {
+                          background-color: rgba(0,0,0,0);
+                          box-shadow: none;
+                          border-style: hidden;
+                        }
+                  - type: entity
+                    entity: sensor.salon_temperature
+                    card_mod:
+                      style: |
+                        ha-card {
+                          background-color: rgba(0,0,0,0);
+                          box-shadow: none;
+                          border-style: hidden;
+                        }
+                  - type: entity
+                    entity: sensor.salon_humidity
+                    card_mod:
+                      style: |
+                        ha-card {
+                          background-color: rgba(0,0,0,0);
+                          box-shadow: none;
+                          border-style: hidden;
+                        }
+                alignment: end
+                card_mod:
+                  style: |
+                    ha-card {
+                      background-color: rgba(0,0,0,0);
+                      box-shadow: none;
+                      border-style: hidden;
+                    }
+      - type: custom:stack-in-card
+        mode: horizontal
+        cards:
+          - type: custom:mushroom-template-card
+            layout: horizontal
+            icon: mdi:desk
+            primary: Bureau
+            tap_action:
+              action: navigate
+              navigation_path: bureau
+            double_tap_action:
+              action: none
+            hold_action:
+              action: none
+            card_mod:
+              style: |
+                ha-card {
+                  background-color: rgba(0,0,0,0);
+                  box-shadow: none;
+                  border-style: hidden;
+                }
+          - type: vertical-stack
+            cards:
+              - type: custom:mushroom-chips-card
+                chips:
+                  - type: entity
+                    entity: sensor.bureau_battery
+                    card_mod:
+                      style: |
+                        ha-card {
+                          background-color: rgba(0,0,0,0);
+                          box-shadow: none;
+                          border-style: hidden;
+                        }
+                  - type: entity
+                    entity: sensor.bureau_temperature
+                    card_mod:
+                      style: |
+                        ha-card {
+                          background-color: rgba(0,0,0,0);
+                          box-shadow: none;
+                          border-style: hidden;
+                        }
+                  - type: entity
+                    entity: sensor.bureau_humidity
+                    card_mod:
+                      style: |
+                        ha-card {
+                          background-color: rgba(0,0,0,0);
+                          box-shadow: none;
+                          border-style: hidden;
+                        }
+                alignment: end
+                card_mod:
+                  style: |
+                    ha-card {
+                      background-color: rgba(0,0,0,0);
+                      box-shadow: none;
+                      border-style: hidden;
+                    }
+      - type: custom:stack-in-card
+        mode: horizontal
+        cards:
+          - type: custom:mushroom-template-card
+            layout: horizontal
+            icon: mdi:chef-hat
+            primary: Cuisine
+            tap_action:
+              action: navigate
+              navigation_path: cuisine
+            double_tap_action:
+              action: none
+            hold_action:
+              action: none
+            card_mod:
+              style: |
+                ha-card {
+                  background-color: rgba(0,0,0,0);
+                  box-shadow: none;
+                  border-style: hidden;
+                }
+          - type: vertical-stack
+            cards:
+              - type: custom:mushroom-chips-card
+                chips:
+                  - type: entity
+                    entity: sensor.cuisine_battery
+                    card_mod:
+                      style: |
+                        ha-card {
+                          background-color: rgba(0,0,0,0);
+                          box-shadow: none;
+                          border-style: hidden;
+                        }
+                  - type: entity
+                    entity: sensor.cuisine_temperature
+                    card_mod:
+                      style: |
+                        ha-card {
+                          background-color: rgba(0,0,0,0);
+                          box-shadow: none;
+                          border-style: hidden;
+                        }
+                  - type: entity
+                    entity: sensor.cuisine_humidity
+                    card_mod:
+                      style: |
+                        ha-card {
+                          background-color: rgba(0,0,0,0);
+                          box-shadow: none;
+                          border-style: hidden;
+                        }
+                alignment: end
+                card_mod:
+                  style: |
+                    ha-card {
+                      background-color: rgba(0,0,0,0);
+                      box-shadow: none;
+                      border-style: hidden;
+                    }
+      - type: custom:stack-in-card
+        mode: horizontal
+        cards:
+          - type: custom:mushroom-template-card
+            layout: horizontal
+            icon: mdi:bathtub
+            primary: Salle de bain
+            tap_action:
+              action: navigate
+              navigation_path: salle-de-bain
+            double_tap_action:
+              action: none
+            hold_action:
+              action: none
+            card_mod:
+              style: |
+                ha-card {
+                  background-color: rgba(0,0,0,0);
+                  box-shadow: none;
+                  border-style: hidden;
+                }
+          - type: vertical-stack
+            cards:
+              - type: custom:mushroom-chips-card
+                chips:
+                  - type: entity
+                    entity: sensor.salle_de_bain_battery
+                    card_mod:
+                      style: |
+                        ha-card {
+                          background-color: rgba(0,0,0,0);
+                          box-shadow: none;
+                          border-style: hidden;
+                        }
+                  - type: entity
+                    entity: sensor.salle_de_bain_temperature
+                    card_mod:
+                      style: |
+                        ha-card {
+                          background-color: rgba(0,0,0,0);
+                          box-shadow: none;
+                          border-style: hidden;
+                        }
+                  - type: entity
+                    entity: sensor.salle_de_bain_humidity
+                    card_mod:
+                      style: |
+                        ha-card {
+                          background-color: rgba(0,0,0,0);
+                          box-shadow: none;
+                          border-style: hidden;
+                        }
+                alignment: end
+                card_mod:
+                  style: |
+                    ha-card {
+                      background-color: rgba(0,0,0,0);
+                      box-shadow: none;
+                      border-style: hidden;
+                    }
+      - type: custom:stack-in-card
+        mode: horizontal
+        cards:
+          - type: custom:mushroom-template-card
+            layout: horizontal
+            icon: mdi:door-closed
+            primary: Hall Rez
+            tap_action:
+              action: navigate
+              navigation_path: hall-rez
+            double_tap_action:
+              action: none
+            hold_action:
+              action: none
+            card_mod:
+              style: |
+                ha-card {
+                  background-color: rgba(0,0,0,0);
+                  box-shadow: none;
+                  border-style: hidden;
+                }
+          - type: vertical-stack
+            cards:
+              - type: custom:mushroom-chips-card
+                chips:
+                  - type: entity
+                    entity: sensor.hall_rez_battery
+                    card_mod:
+                      style: |
+                        ha-card {
+                          background-color: rgba(0,0,0,0);
+                          box-shadow: none;
+                          border-style: hidden;
+                        }
+                  - type: entity
+                    entity: sensor.hall_rez_temperature
+                    card_mod:
+                      style: |
+                        ha-card {
+                          background-color: rgba(0,0,0,0);
+                          box-shadow: none;
+                          border-style: hidden;
+                        }
+                  - type: entity
+                    entity: sensor.hall_rez_humidity
+                    card_mod:
+                      style: |
+                        ha-card {
+                          background-color: rgba(0,0,0,0);
+                          box-shadow: none;
+                          border-style: hidden;
+                        }
+                alignment: end
+                card_mod:
+                  style: |
+                    ha-card {
+                      background-color: rgba(0,0,0,0);
+                      box-shadow: none;
+                      border-style: hidden;
+                    }
+      - type: custom:stack-in-card
+        mode: horizontal
+        cards:
+          - type: custom:mushroom-template-card
+            layout: horizontal
+            icon: mdi:subway-variant
+            primary: Cave
+            tap_action:
+              action: navigate
+              navigation_path: cave
+            double_tap_action:
+              action: none
+            hold_action:
+              action: none
+            card_mod:
+              style: |
+                ha-card {
+                  background-color: rgba(0,0,0,0);
+                  box-shadow: none;
+                  border-style: hidden;
+                }
+          - type: vertical-stack
+            cards:
+              - type: custom:mushroom-chips-card
+                chips:
+                  - type: entity
+                    entity: sensor.cave_battery
+                    card_mod:
+                      style: |
+                        ha-card {
+                          background-color: rgba(0,0,0,0);
+                          box-shadow: none;
+                          border-style: hidden;
+                        }
+                  - type: entity
+                    entity: sensor.cave_temperature
+                    card_mod:
+                      style: |
+                        ha-card {
+                          background-color: rgba(0,0,0,0);
+                          box-shadow: none;
+                          border-style: hidden;
+                        }
+                  - type: entity
+                    entity: sensor.cave_humidity
+                    card_mod:
+                      style: |
+                        ha-card {
+                          background-color: rgba(0,0,0,0);
+                          box-shadow: none;
+                          border-style: hidden;
+                        }
+                alignment: end
+                card_mod:
+                  style: |
+                    ha-card {
+                      background-color: rgba(0,0,0,0);
+                      box-shadow: none;
+                      border-style: hidden;
+                    }
+
+##### PIECES #####
+
+  - title: Bureau
+    path: bureau
+    subview: false
+    cards:
+      - type: custom:mushroom-chips-card
+        chips:
+          - type: back
+          - type: template
+            content: Bureau
+            tap_action: none
+          - type: menu
+        alignment: justify
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: custom:mini-graph-card
+                entities:
+                  - sensor.bureau_temperature
+                show:
+                  state: true
+                  name: true
+                  icon: true
+                name: Température
+                animate: true
+                point_per_hour: 0.5
+                hours_to_show: 48
+                color_thresholds:
+                  - value: 0
+                    color: '#0000FF'
+                  - value: 15
+                    color: '#00FFFF'
+                  - value: 20
+                    color: '#008000'
+                  - value: 22
+                    color: '#FFFF00'
+                  - value: 23
+                    color: '#FF8000'
+                  - value: 26
+                    color: '#FF0000'
+                card_mod:
+                  style: |
+                    ha-card {
+                      background-color: rgba(0,0,0,0);
+                      box-shadow: none;
+                      border-style: hidden;
+                    }
+              - type: custom:mini-graph-card
+                entities:
+                  - sensor.bureau_humidity
+                show:
+                  state: true
+                  name: true
+                  icon: true
+                name: Humidité
+                animate: true
+                point_per_hour: 0.5
+                hours_to_show: 48
+                card_mod:
+                  style: |
+                    ha-card {
+                      background-color: rgba(0,0,0,0);
+                      box-shadow: none;
+                      border-style: hidden;
+                    }
+          - type: custom:mushroom-title-card
+            title: Internet
+          - type: horizontal-stack
+            cards:
+              - type: sensor
+                hours_to_show: 24
+                graph: line
+                icon: mdi:upload
+                detail: 1
+                entity: sensor.xe75pro_upload_speed
+                name: Upload
+                card_mod:
+                  style: |
+                    ha-card {
+                      background-color: rgba(0,0,0,0);
+                      box-shadow: none;
+                      border-style: hidden;
+                    }
+              - hours_to_show: 24
+                graph: line
+                type: sensor
+                detail: 1
+                icon: mdi:download
+                entity: sensor.xe75pro_download_speed
+                name: Download
+                card_mod:
+                  style: |
+                    ha-card {
+                      background-color: rgba(0,0,0,0);
+                      box-shadow: none;
+                      border-style: hidden;
+                    }
+          - type: custom:mushroom-title-card
+            title: Imprimante
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                entity: sensor.brother_hl_3140cw_series
+                name: Imprimante
+                color: gray
+                show_state: true
+                styles:
+                  card:
+                    - padding: 0 0 5px 0
+                  icon:
+                    - width: 100%
+                  state:
+                    - text-align: left
+                    - width: 100%
+                  grid:
+                    - grid-template-areas: '"i c m y k" "n s s s s"'
+                    - grid-template-columns: 1fr 1fr 1fr 1fr 1fr
+                    - grid-template-rows: auto 1em
+                  custom_fields:
+                    b:
+                      - width: 80%
+                      - margin: auto
+                    c:
+                      - width: 80%
+                      - margin: auto
+                    m:
+                      - width: 80%
+                      - margin: auto
+                    'y':
+                      - width: 80%
+                      - margin: auto
+                custom_fields:
+                  k:
+                    card:
+                      type: custom:button-card
+                      template: inkwell
+                      entity: sensor.brother_hl_3140cw_series_black_toner_cartridge
+                      variables:
+                        color: black
+                  c:
+                    card:
+                      type: custom:button-card
+                      template: inkwell
+                      entity: sensor.brother_hl_3140cw_series_cyan_toner_cartridge
+                      variables:
+                        color: cyan
+                  m:
+                    card:
+                      type: custom:button-card
+                      template: inkwell
+                      entity: sensor.brother_hl_3140cw_series_magenta_toner_cartridge
+                      variables:
+                        color: magenta
+                  'y':
+                    card:
+                      type: custom:button-card
+                      template: inkwell
+                      entity: sensor.brother_hl_3140cw_series_yellow_toner_cartridge
+                      variables:
+                        color: yellow
+  - title: Salon
+    path: salon
+    subview: false
+    cards:
+      - type: custom:mushroom-chips-card
+        chips:
+          - type: back
+          - type: template
+            content: Salon
+            tap_action: none
+          - type: menu
+        alignment: justify
+      - type: custom:stack-in-card
+        mode: vertical
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: custom:mini-graph-card
+                entities:
+                  - sensor.salon_temperature
+                show:
+                  state: true
+                  name: true
+                  icon: true
+                name: Température
+                animate: true
+                point_per_hour: 0.5
+                hours_to_show: 48
+                color_thresholds:
+                  - value: 0
+                    color: '#0000FF'
+                  - value: 15
+                    color: '#00FFFF'
+                  - value: 20
+                    color: '#008000'
+                  - value: 22
+                    color: '#FFFF00'
+                  - value: 23
+                    color: '#FF8000'
+                  - value: 26
+                    color: '#FF0000'
+                card_mod:
+                  style: |
+                    ha-card {
+                      background-color: rgba(0,0,0,0);
+                      box-shadow: none;
+                      border-style: hidden;
+                    }
+              - type: custom:mini-graph-card
+                entities:
+                  - sensor.salon_humidity
+                show:
+                  state: true
+                  name: true
+                  icon: true
+                name: Humidité
+                animate: true
+                point_per_hour: 0.5
+                hours_to_show: 48
+                card_mod:
+                  style: |
+                    ha-card {
+                      background-color: rgba(0,0,0,0);
+                      box-shadow: none;
+                      border-style: hidden;
+                    }
+  - title: Chambre Thomas
+    path: chambre-thomas
+    subview: false
+    cards:
+      - type: custom:mushroom-chips-card
+        chips:
+          - type: back
+          - type: template
+            content: Chambre Thomas
+            tap_action: none
+          - type: menu
+        alignment: justify
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: custom:mini-graph-card
+                entities:
+                  - sensor.chambre_thomas_temperature
+                show:
+                  state: true
+                  name: true
+                  icon: true
+                name: Température
+                animate: true
+                point_per_hour: 0.5
+                hours_to_show: 48
+                color_thresholds:
+                  - value: 0
+                    color: '#0000FF'
+                  - value: 15
+                    color: '#00FFFF'
+                  - value: 20
+                    color: '#008000'
+                  - value: 22
+                    color: '#FFFF00'
+                  - value: 23
+                    color: '#FF8000'
+                  - value: 26
+                    color: '#FF0000'
+                card_mod:
+                  style: |
+                    ha-card {
+                      background-color: rgba(0,0,0,0);
+                      box-shadow: none;
+                      border-style: hidden;
+                    }
+              - type: custom:mini-graph-card
+                entities:
+                  - sensor.chambre_thomas_humidity
+                show:
+                  state: true
+                  name: true
+                  icon: true
+                name: Humidité
+                animate: true
+                point_per_hour: 0.5
+                hours_to_show: 48
+                card_mod:
+                  style: |
+                    ha-card {
+                      background-color: rgba(0,0,0,0);
+                      box-shadow: none;
+                      border-style: hidden;
+                    }
+  - title: Chambre Amélie
+    path: chambre-amelie
+    subview: false
+    cards:
+      - type: custom:mushroom-chips-card
+        chips:
+          - type: back
+          - type: template
+            content: Chambre Amélie
+            tap_action: none
+          - type: menu
+        alignment: justify
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: custom:mini-graph-card
+                entities:
+                  - sensor.chambre_amelie_temperature
+                show:
+                  state: true
+                  name: true
+                  icon: true
+                name: Température
+                animate: true
+                point_per_hour: 0.5
+                hours_to_show: 48
+                color_thresholds:
+                  - value: 0
+                    color: '#0000FF'
+                  - value: 15
+                    color: '#00FFFF'
+                  - value: 20
+                    color: '#008000'
+                  - value: 22
+                    color: '#FFFF00'
+                  - value: 23
+                    color: '#FF8000'
+                  - value: 26
+                    color: '#FF0000'
+                card_mod:
+                  style: |
+                    ha-card {
+                      background-color: rgba(0,0,0,0);
+                      box-shadow: none;
+                      border-style: hidden;
+                    }
+              - type: custom:mini-graph-card
+                entities:
+                  - sensor.chambre_amelie_humidity
+                show:
+                  state: true
+                  name: true
+                  icon: true
+                name: Humidité
+                animate: true
+                point_per_hour: 0.5
+                hours_to_show: 48
+                card_mod:
+                  style: |
+                    ha-card {
+                      background-color: rgba(0,0,0,0);
+                      box-shadow: none;
+                      border-style: hidden;
+                    }
+  - title: Chambre Espen
+    path: chambre-espen
+    subview: false
+    cards:
+      - type: custom:mushroom-chips-card
+        chips:
+          - type: back
+          - type: template
+            content: Chambre Espen
+            tap_action: none
+          - type: menu
+        alignment: justify
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: custom:mini-graph-card
+                entities:
+                  - sensor.chambre_espen_temperature
+                show:
+                  state: true
+                  name: true
+                  icon: true
+                name: Température
+                animate: true
+                point_per_hour: 0.5
+                hours_to_show: 48
+                color_thresholds:
+                  - value: 0
+                    color: '#0000FF'
+                  - value: 15
+                    color: '#00FFFF'
+                  - value: 20
+                    color: '#008000'
+                  - value: 22
+                    color: '#FFFF00'
+                  - value: 23
+                    color: '#FF8000'
+                  - value: 26
+                    color: '#FF0000'
+                card_mod:
+                  style: |
+                    ha-card {
+                      background-color: rgba(0,0,0,0);
+                      box-shadow: none;
+                      border-style: hidden;
+                    }
+              - type: custom:mini-graph-card
+                entities:
+                  - sensor.chambre_espen_humidity
+                show:
+                  state: true
+                  name: true
+                  icon: true
+                name: Humidité
+                animate: true
+                point_per_hour: 0.5
+                hours_to_show: 48
+                card_mod:
+                  style: |
+                    ha-card {
+                      background-color: rgba(0,0,0,0);
+                      box-shadow: none;
+                      border-style: hidden;
+                    }
+  - title: Chambre Fred
+    path: chambre-fred
+    subview: false
+    cards:
+      - type: custom:mushroom-chips-card
+        chips:
+          - type: back
+          - type: template
+            content: Chambre Fred
+            tap_action: none
+          - type: menu
+        alignment: justify
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: custom:mini-graph-card
+                entities:
+                  - sensor.chambre_fred_temperature
+                show:
+                  state: true
+                  name: true
+                  icon: true
+                name: Température
+                animate: true
+                point_per_hour: 0.5
+                hours_to_show: 48
+                color_thresholds:
+                  - value: 0
+                    color: '#0000FF'
+                  - value: 15
+                    color: '#00FFFF'
+                  - value: 20
+                    color: '#008000'
+                  - value: 22
+                    color: '#FFFF00'
+                  - value: 23
+                    color: '#FF8000'
+                  - value: 26
+                    color: '#FF0000'
+                card_mod:
+                  style: |
+                    ha-card {
+                      background-color: rgba(0,0,0,0);
+                      box-shadow: none;
+                      border-style: hidden;
+                    }
+              - type: custom:mini-graph-card
+                entities:
+                  - sensor.chambre_fred_humidity
+                show:
+                  state: true
+                  name: true
+                  icon: true
+                name: Humidité
+                animate: true
+                point_per_hour: 0.5
+                hours_to_show: 48
+                card_mod:
+                  style: |
+                    ha-card {
+                      background-color: rgba(0,0,0,0);
+                      box-shadow: none;
+                      border-style: hidden;
+                    }
+  - title: Salle de bain
+    path: salle-de-bain
+    subview: false
+    cards:
+      - type: custom:mushroom-chips-card
+        chips:
+          - type: back
+          - type: template
+            content: Salle De Bain
+            tap_action: none
+          - type: menu
+        alignment: justify
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: custom:mini-graph-card
+                entities:
+                  - sensor.salle_de_bain_temperature
+                show:
+                  state: true
+                  name: true
+                  icon: true
+                name: Température
+                animate: true
+                point_per_hour: 0.5
+                hours_to_show: 48
+                color_thresholds:
+                  - value: 0
+                    color: '#0000FF'
+                  - value: 15
+                    color: '#00FFFF'
+                  - value: 20
+                    color: '#008000'
+                  - value: 22
+                    color: '#FFFF00'
+                  - value: 23
+                    color: '#FF8000'
+                  - value: 26
+                    color: '#FF0000'
+                card_mod:
+                  style: |
+                    ha-card {
+                      background-color: rgba(0,0,0,0);
+                      box-shadow: none;
+                      border-style: hidden;
+                    }
+              - type: custom:mini-graph-card
+                entities:
+                  - sensor.salle_de_bain_humidity
+                show:
+                  state: true
+                  name: true
+                  icon: true
+                name: Humidité
+                animate: true
+                point_per_hour: 0.5
+                hours_to_show: 48
+                card_mod:
+                  style: |
+                    ha-card {
+                      background-color: rgba(0,0,0,0);
+                      box-shadow: none;
+                      border-style: hidden;
+                    }
+  - title: Cave
+    path: cave
+    subview: false
+    cards:
+      - type: custom:mushroom-chips-card
+        chips:
+          - type: back
+          - type: template
+            content: Cave
+            tap_action: none
+          - type: menu
+        alignment: justify
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: custom:mini-graph-card
+                entities:
+                  - sensor.cave_temperature
+                show:
+                  state: true
+                  name: true
+                  icon: true
+                name: Température
+                animate: true
+                point_per_hour: 0.5
+                hours_to_show: 48
+                color_thresholds:
+                  - value: 0
+                    color: '#0000FF'
+                  - value: 15
+                    color: '#00FFFF'
+                  - value: 20
+                    color: '#008000'
+                  - value: 22
+                    color: '#FFFF00'
+                  - value: 23
+                    color: '#FF8000'
+                  - value: 26
+                    color: '#FF0000'
+                card_mod:
+                  style: |
+                    ha-card {
+                      background-color: rgba(0,0,0,0);
+                      box-shadow: none;
+                      border-style: hidden;
+                    }
+              - type: custom:mini-graph-card
+                entities:
+                  - sensor.cave_humidity
+                show:
+                  state: true
+                  name: true
+                  icon: true
+                name: Humidité
+                animate: true
+                point_per_hour: 0.5
+                hours_to_show: 48
+                card_mod:
+                  style: |
+                    ha-card {
+                      background-color: rgba(0,0,0,0);
+                      box-shadow: none;
+                      border-style: hidden;
+                    }
+  - title: Hall Rez
+    path: hall-rez
+    subview: false
+    cards:
+      - type: custom:mushroom-chips-card
+        chips:
+          - type: back
+          - type: template
+            content: Hall Rez
+            tap_action: none
+          - type: menu
+        alignment: justify
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: custom:mini-graph-card
+                entities:
+                  - sensor.hall_rez_temperature
+                show:
+                  state: true
+                  name: true
+                  icon: true
+                name: Température
+                animate: true
+                point_per_hour: 0.5
+                hours_to_show: 48
+                color_thresholds:
+                  - value: 0
+                    color: '#0000FF'
+                  - value: 15
+                    color: '#00FFFF'
+                  - value: 20
+                    color: '#008000'
+                  - value: 22
+                    color: '#FFFF00'
+                  - value: 23
+                    color: '#FF8000'
+                  - value: 26
+                    color: '#FF0000'
+                card_mod:
+                  style: |
+                    ha-card {
+                      background-color: rgba(0,0,0,0);
+                      box-shadow: none;
+                      border-style: hidden;
+                    }
+              - type: custom:mini-graph-card
+                entities:
+                  - sensor.hall_rez_humidity
+                show:
+                  state: true
+                  name: true
+                  icon: true
+                name: Humidité
+                animate: true
+                point_per_hour: 0.5
+                hours_to_show: 48
+                card_mod:
+                  style: |
+                    ha-card {
+                      background-color: rgba(0,0,0,0);
+                      box-shadow: none;
+                      border-style: hidden;
+                    }
+  - title: Cuisine
+    path: cuisine
+    subview: false
+    cards:
+      - type: custom:mushroom-chips-card
+        chips:
+          - type: back
+          - type: template
+            content: Cuisine
+            tap_action: none
+          - type: menu
+        alignment: justify
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: custom:mini-graph-card
+                entities:
+                  - sensor.cuisine_temperature
+                show:
+                  state: true
+                  name: true
+                  icon: true
+                name: Température
+                animate: true
+                point_per_hour: 0.5
+                hours_to_show: 48
+                color_thresholds:
+                  - value: 0
+                    color: '#0000FF'
+                  - value: 15
+                    color: '#00FFFF'
+                  - value: 20
+                    color: '#008000'
+                  - value: 22
+                    color: '#FFFF00'
+                  - value: 23
+                    color: '#FF8000'
+                  - value: 26
+                    color: '#FF0000'
+                card_mod:
+                  style: |
+                    ha-card {
+                      background-color: rgba(0,0,0,0);
+                      box-shadow: none;
+                      border-style: hidden;
+                    }
+              - type: custom:mini-graph-card
+                entities:
+                  - sensor.cuisine_humidity
+                show:
+                  state: true
+                  name: true
+                  icon: true
+                name: Humidité
+                animate: true
+                point_per_hour: 0.5
+                hours_to_show: 48
+                card_mod:
+                  style: |
+                    ha-card {
+                      background-color: rgba(0,0,0,0);
+                      box-shadow: none;
+                      border-style: hidden;
+                    }
+
+  - title: Local Technique
+    path: local-technique
+    subview: false
+    cards:
+      - type: custom:mushroom-chips-card
+        chips:
+          - type: back
+          - type: template
+            content: Local Technique
+            tap_action: none
+          - type: menu
+        alignment: justify
+      - type: horizontal-stack
+        cards:
+          - type: custom:mushroom-template-card
+            icon: mdi:car-esp
+            icon_color: |-
+              {% if is_state("binary_sensor.garage_status", 'on') %} 
+                green
+              {% else %} 
+                grey
+              {% endif %}
+            layout: vertical
+            multiline_secondary: false
+            fill_container: true
+          - type: custom:mushroom-template-card
+            icon: mdi:wifi
+            icon_color: |-
+              {% if sensor.garage_wifi_signal_percentage > 70 %} 
+                green
+              {% else if sensor.garage_wifi_signal_percentage > 50 %} 
+                yellow
+              {% else %}
+                red
+              {% endif %}
+            layout: vertical
+            multiline_secondary: false
+            fill_container: true
+
+      - type: entities
+        entities:
+          - device_tracker.esphome_web_edc0c8
+          - entity: sensor.garage_bssid
+            name: Garage - BSSID
+          - entity: sensor.garage_esphome_version
+            name: Garage - Esphome Version
+          - entity: sensor.garage_ip
+            name: Garage - IP
+          - entity: sensor.garage_mac_wifi_address
+            name: Garage - Mac Wifi Address
+          - entity: sensor.garage_ssid
+            name: Garage - SSID
+          - entity: binary_sensor.garage_status
+            name: Garage - Status
+          - entity: sensor.garage_uptime_sensor
+            name: Garage - Uptime Sensor
+          - entity: sensor.garage_wifi_signal
+            name: Garage - WiFi Signal
+          - entity: sensor.uptime_sensor
+            name: Uptime Sensor
+          - entity: sensor.wifi_signal_sensor
+            name: WiFi Signal Sensor
+        title: Garage
+  - title: Power
+    path: power
+    icon: mdi:lightning-bolt
+    badges: []
+    cards:
+      - type: horizontal-stack
+        cards:
+          - type: custom:mushroom-chips-card
+            chips:
+              - type: back
+            alignment: start
+          - type: custom:mushroom-chips-card
+            chips:
+              - type: entity
+                entity: sensor.electricity_surplus
+            alignment: center
+          - type: custom:mushroom-chips-card
+            chips:
+              - type: menu
+            alignment: end
+      - type: custom:mushroom-title-card
+        title: Energy
+      - type: horizontal-stack
+        cards:
+          - type: custom:mushroom-template-card
+            primary: Consumption
+            secondary: "{{ states('sensor.electricity_meter_power_consumption') }} kW"
+            icon: mdi:transmission-tower-import
+            icon_color: red
+            layout: vertical
+            entity: sensor.electricity_meter_power_consumption
+          - type: custom:mushroom-template-card
+            primary: Production
+            secondary: "{{ states('sensor.electricity_meter_power_production') }} kW"
+            icon: mdi:solar-power
+            icon_color: yellow
+            layout: vertical
+            entity: sensor.electricity_meter_power_production
+      - type: custom:mushroom-template-card
+        primary: Surplus
+        secondary: "{{ states('sensor.electricity_surplus') }} kW"
+        icon: >-
+          {% if states('sensor.electricity_surplus') | float > 0 %}
+            mdi:solar-power
+          {% else %}
+            mdi:transmission-tower-import
+          {% endif %}
+        icon_color: >-
+          {% if states('sensor.electricity_surplus') | float > 0 %}
+            green
+          {% else %}
+            orange
+          {% endif %}
+        entity: sensor.electricity_surplus
+      - type: custom:mushroom-title-card
+        title: EcoFlow Battery
+        subtitle: Delta 2 Max
+      - type: horizontal-stack
+        cards:
+          - type: custom:mushroom-template-card
+            primary: Battery
+            secondary: "{{ states('sensor.delta_2_max_0868_battery_level') }}%"
+            icon: >-
+              {% set level = states('sensor.delta_2_max_0868_battery_level') | int %}
+              {% if level > 80 %}mdi:battery-high
+              {% elif level > 40 %}mdi:battery-medium
+              {% elif level > 10 %}mdi:battery-low
+              {% else %}mdi:battery-alert{% endif %}
+            icon_color: >-
+              {% set level = states('sensor.delta_2_max_0868_battery_level') | int %}
+              {% if level > 60 %}green{% elif level > 20 %}orange{% else %}red{% endif %}
+            layout: vertical
+            entity: sensor.delta_2_max_0868_battery_level
+          - type: custom:mushroom-template-card
+            primary: Charging
+            secondary: >-
+              {% if is_state('switch.ecoflow', 'on') %}
+                {{ states('number.delta_2_max_0868_ac_charging_power') }} W
+              {% else %}
+                Off
+              {% endif %}
+            icon: mdi:battery-charging
+            icon_color: >-
+              {% if is_state('switch.ecoflow', 'on') %}blue{% else %}grey{% endif %}
+            layout: vertical
+            entity: switch.ecoflow
+            tap_action:
+              action: toggle

@@ -1,0 +1,90 @@
+title: Power
+views:
+  - title: Power
+    path: power
+    icon: mdi:lightning-bolt
+    badges: []
+    cards:
+      - type: horizontal-stack
+        cards:
+          - type: custom:mushroom-chips-card
+            chips:
+              - type: back
+            alignment: start
+          - type: custom:mushroom-chips-card
+            chips:
+              - type: entity
+                entity: sensor.electricity_surplus
+            alignment: center
+          - type: custom:mushroom-chips-card
+            chips:
+              - type: menu
+            alignment: end
+      - type: custom:mushroom-title-card
+        title: Energy
+      - type: horizontal-stack
+        cards:
+          - type: custom:mushroom-template-card
+            primary: Consumption
+            secondary: "{{ states('sensor.electricity_meter_power_consumption') }} kW"
+            icon: mdi:transmission-tower-import
+            icon_color: red
+            layout: vertical
+            entity: sensor.electricity_meter_power_consumption
+          - type: custom:mushroom-template-card
+            primary: Production
+            secondary: "{{ states('sensor.electricity_meter_power_production') }} kW"
+            icon: mdi:solar-power
+            icon_color: yellow
+            layout: vertical
+            entity: sensor.electricity_meter_power_production
+      - type: custom:mushroom-template-card
+        primary: Surplus
+        secondary: "{{ states('sensor.electricity_surplus') }} kW"
+        icon: >-
+          {% if states('sensor.electricity_surplus') | float > 0 %}
+            mdi:solar-power
+          {% else %}
+            mdi:transmission-tower-import
+          {% endif %}
+        icon_color: >-
+          {% if states('sensor.electricity_surplus') | float > 0 %}
+            green
+          {% else %}
+            orange
+          {% endif %}
+        entity: sensor.electricity_surplus
+      - type: custom:mushroom-title-card
+        title: EcoFlow Battery
+        subtitle: Delta 2 Max
+      - type: horizontal-stack
+        cards:
+          - type: custom:mushroom-template-card
+            primary: Battery
+            secondary: "{{ states('sensor.delta_2_max_0868_battery_level') }}%"
+            icon: >-
+              {% set level = states('sensor.delta_2_max_0868_battery_level') | int %}
+              {% if level > 80 %}mdi:battery-high
+              {% elif level > 40 %}mdi:battery-medium
+              {% elif level > 10 %}mdi:battery-low
+              {% else %}mdi:battery-alert{% endif %}
+            icon_color: >-
+              {% set level = states('sensor.delta_2_max_0868_battery_level') | int %}
+              {% if level > 60 %}green{% elif level > 20 %}orange{% else %}red{% endif %}
+            layout: vertical
+            entity: sensor.delta_2_max_0868_battery_level
+          - type: custom:mushroom-template-card
+            primary: Charging
+            secondary: >-
+              {% if is_state('switch.ecoflow', 'on') %}
+                {{ states('number.delta_2_max_0868_ac_charging_power') }} W
+              {% else %}
+                Off
+              {% endif %}
+            icon: mdi:battery-charging
+            icon_color: >-
+              {% if is_state('switch.ecoflow', 'on') %}blue{% else %}grey{% endif %}
+            layout: vertical
+            entity: switch.ecoflow
+            tap_action:
+              action: toggle

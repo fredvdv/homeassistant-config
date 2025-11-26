@@ -1,62 +1,15 @@
 sensor:
-  - name: Gas Total Consumption
-    unique_id: a338b079-9aaf-4b10-b730-9deb50454231
-    device_class: gas
-    state_class: total_increasing
-    unit_of_measurement: "m³"
+  - name: "Electricity Surplus"
+    unique_id: electricity_surplus
+    unit_of_measurement: "kW"
+    state_class: measurement
+    device_class: power
     state: >
-      {{ states('sensor.gasmeter_raw') | float }}
-
-  # Water Usage
-  #- name: "Water used last 15 minutes"
-  #  unique_id: 7b137ebc-79be-472d-ba0b-688b69f94bff
-  #  unit_of_measurement: "l"
-  #  state: "{{ states('sensor.water_usage_quarter_hourly') | float * 1000 }}"
-  #  availability: "{{ is_number(states('sensor.water_usage_quarter_hourly')) }}"
-  #- name: "Water used last hour"
-  #  unique_id: 5c2f2f10-e086-43a8-bd38-5f3a3321e2a8
-  #  unit_of_measurement: "l"
-  #  state: "{{ states('sensor.water_usage_hourly') | float * 1000 }}"
-  #  availability: "{{ is_number(states('sensor.water_usage_hourly')) }}"
-  #- name: "Water used today"
-  #  unique_id: 47d4974f-761e-487d-8489-efe4ce4cdcb2
-  #  unit_of_measurement: "l"
-  #  state: "{{ states('sensor.water_usage_daily') | float * 1000 }}"
-  #  availability: "{{ is_number(states('sensor.water_usage_daily')) }}"
-  #- name: "Water used this month"
-  #  unique_id: 4bdc84a0-d41c-4197-abb9-962e0e779ded
-  #  unit_of_measurement: "l"
-  #  state: "{{ states('sensor.water_usage_monthly') | float * 1000 }}"
-  #  availability: "{{ is_number(states('sensor.water_usage_monthly')) }}"
-  #- name: "Water used this year"
-  #  unique_id: e998ec96-e838-4647-8e76-3deab25d0db7
-  #  unit_of_measurement: "l"
-  #  state: "{{ states('sensor.water_usage_yearly') | float * 1000 }}"
-  #  availability: "{{ is_number(states('sensor.water_yearly')) }}"
-
-  # Gas Usage
-  #- name: "Gas used last 15 minutes"
-  #  unique_id: 5f512cd4-7ec4-49f9-91f1-01ba0c1e0158
-  #  unit_of_measurement: "m3"
-  #  state: "{{ states('sensor.gas_usage_quarter_hourly') | float * 1000  }}"
-  #  availability: "{{ is_number(states('sensor.gas_usage_quarter_hourly')) }}"
-  # - name: "Gas used last hour"
-  #   unique_id: c35c5aac-1108-4367-a28a-bce75bee0b5b
-  #   unit_of_measurement: "m3"
-  #   state: "{{ states('sensor.gas_usage_hourly') | float * 1000 }}"
-  #   availability: "{{ is_number(states('sensor.gas_usage_hourly')) }}"
-  # - name: "Gas used today"
-  #   unique_id: 69ea43fb-9963-4288-a911-4b4dd32134d0
-  #   unit_of_measurement: "m3"
-  #   state: "{{ states('sensor.gas_usage_daily') | float * 1000 }}"
-  #   availability: "{{ is_number(states('sensor.gas_usage_daily')) }}"
-  # - name: "Gas used this month"
-  #   unique_id: 72d5c29f-c20b-442e-b193-705a23998265
-  #   unit_of_measurement: "m3"
-  #   state: "{{ states('sensor.gas_usage_monthly') | float * 1000 }}"
-  #   availability: "{{ is_number(states('sensor.gas_usage_monthly')) }}"
-  # - name: "Gas used this year"
-  #   unique_id: a2a0b2e0-9891-4021-a2d2-1938bcf3de01
-  #   unit_of_measurement: "m3"
-  #   state: "{{ states('sensor.gas_usage_yearly') | float * 1000 }}"
-  #   availability: "{{ is_number(states('sensor.gas_usage_yearly')) }}"
+      {{ (states('sensor.electricity_meter_power_production') | float(0) 
+          - states('sensor.electricity_meter_power_consumption') | float(0)) | round(3) }}
+    icon: >
+      {% if this.state | float(0) > 0 %}
+        mdi:solar-power
+      {% else %}
+        mdi:transmission-tower-import
+      {% endif %}
