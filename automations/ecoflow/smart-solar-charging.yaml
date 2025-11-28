@@ -25,7 +25,51 @@ action:
               name: "EcoFlow Charging"
               message: "Stopped - Battery full"
 
-      # CASE 2: Start if surplus > 500W and battery < 95%
+      # CASE 2: Emergency charge from grid if battery critically low
+      - conditions:
+          - condition: numeric_state
+            entity_id: sensor.delta_2_max_0868_battery_level
+            below: 15
+          - condition: state
+            entity_id: switch.ecoflow
+            state: "off"
+        sequence:
+          - service: switch.turn_on
+            target:
+              entity_id: switch.ecoflow
+          - delay:
+              seconds: 30
+          - service: number.set_value
+            target:
+              entity_id: number.delta_2_max_0868_ac_charging_power
+            data:
+              value: 400
+          - service: logbook.log
+            data:
+              name: "EcoFlow Charging"
+              message: "Emergency charge - Battery at {{ states('sensor.delta_2_max_0868_battery_level') }}%"
+
+      # CASE 3: Stop emergency charge when battery reaches safe level
+      - conditions:
+          - condition: numeric_state
+            entity_id: sensor.delta_2_max_0868_battery_level
+            above: 25
+          - condition: numeric_state
+            entity_id: sensor.electricity_surplus
+            below: 0.2
+          - condition: state
+            entity_id: switch.ecoflow
+            state: "on"
+        sequence:
+          - service: switch.turn_off
+            target:
+              entity_id: switch.ecoflow
+          - service: logbook.log
+            data:
+              name: "EcoFlow Charging"
+              message: "Emergency charge complete - Battery at {{ states('sensor.delta_2_max_0868_battery_level') }}%"
+
+      # CASE 4: Start if surplus > 500W and battery < 95%
       - conditions:
           - condition: numeric_state
             entity_id: sensor.electricity_surplus
@@ -53,11 +97,14 @@ action:
               name: "EcoFlow Charging"
               message: "Started - Surplus {{ states('sensor.electricity_surplus') }} kW"
 
-      # CASE 3: Stop if surplus < 200W for 5 minutes
+      # CASE 5: Stop if surplus < 200W for 5 minutes (only if battery above emergency threshold)
       - conditions:
           - condition: numeric_state
             entity_id: sensor.electricity_surplus
             below: 0.2
+          - condition: numeric_state
+            entity_id: sensor.delta_2_max_0868_battery_level
+            above: 25
           - condition: state
             entity_id: switch.ecoflow
             state: "on"
