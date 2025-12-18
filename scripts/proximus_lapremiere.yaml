@@ -1,0 +1,19 @@
+proximus_lapremiere:
+  alias: "La Première sur Proximus"
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.artemis
+      data:
+        command: KEYCODE_HOME
+    - delay:
+        seconds: 1
+    - service: remote.send_command
+      target:
+        entity_id: remote.artemis
+      data:
+        command:
+          - KEYCODE_8
+          - KEYCODE_5
+          - KEYCODE_0
+        delay_secs: 0.3

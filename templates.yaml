@@ -5,7 +5,7 @@ sensor:
     state_class: measurement
     device_class: power
     state: >
-      {{ (states('sensor.electricity_meter_power_production') | float(0) 
+      {{ (states('sensor.electricity_meter_power_production') | float(0)
           - states('sensor.electricity_meter_power_consumption') | float(0)) | round(3) }}
     icon: >
       {% if this.state | float(0) > 0 %}
@@ -13,3 +13,16 @@ sensor:
       {% else %}
         mdi:transmission-tower-import
       {% endif %}
+
+  - name: "Electricity Surplus Duration"
+    unique_id: electricity_surplus_duration
+    unit_of_measurement: "min"
+    state: >
+      {% set surplus = states('sensor.electricity_surplus') | float(0) %}
+      {% if surplus > 0.5 %}
+        {% set last_changed = states.sensor.electricity_surplus.last_changed %}
+        {{ ((now() - last_changed).total_seconds() / 60) | round(1) }}
+      {% else %}
+        0
+      {% endif %}
+    icon: mdi:timer-outline

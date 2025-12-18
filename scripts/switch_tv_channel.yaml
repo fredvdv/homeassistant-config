@@ -1,0 +1,26 @@
+switch_tv_channel:
+  alias: Switch TV Channel
+  sequence:
+  - action: remote.send_command
+    entity_id: remote.artemis
+    data:
+      command: HOME
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 0
+      milliseconds: 300
+  - repeat:
+      for_each: '{{ channel }}'
+      sequence:
+      - action: media_player.play_media
+        entity_id: media_player.artemis
+        data:
+          media_content_type: channel
+          media_content_id: '{{ repeat.item }}'
+      - delay:
+          hours: 0
+          minutes: 0
+          seconds: 0
+          milliseconds: 300
+  description: ''

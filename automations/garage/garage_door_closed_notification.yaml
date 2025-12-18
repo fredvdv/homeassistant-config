@@ -1,0 +1,14 @@
+id: garage_door_closed_notification
+alias: "Garage Door - Closed Notification"
+description: "Send notification when garage door closes"
+triggers:
+  - trigger: state
+    entity_id: sensor.garage_door_position
+    to: "0.0"
+conditions:
+  - condition: template
+    value_template: "{{ trigger.from_state.state not in ['unavailable', 'unknown'] }}"
+actions:
+  - action: notify.mobile_app_fred_16_pro
+    data:
+      message: "Porte de garage fermée"

@@ -1,0 +1,8 @@
+ampli_power:
+    sequence:
+      - service: remote.send_command
+        target:
+          entity_id: remote.sauron
+        data:
+          device: ampli
+          command: Power

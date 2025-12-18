@@ -1,0 +1,9 @@
+ampli_volume_down:
+    alias: "Ampli Volume Down" 
+    sequence:
+      - service: remote.send_command
+        target:
+          entity_id: remote.sauron
+        data:
+          device: ampli
+          command: Volume Down

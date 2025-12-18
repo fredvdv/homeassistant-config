@@ -1,0 +1,20 @@
+id: bathroom_fan_off
+alias: "Bathroom Fan - Turn Off (Low Humidity)"
+description: "Turn off bathroom fan when humidity drops below 60%"
+triggers:
+  - trigger: numeric_state
+    entity_id: sensor.salle_de_bain_humidity
+    below: 60
+conditions:
+  - condition: state
+    entity_id: switch.ventilateur_sdb_relay
+    state: "on"
+actions:
+  - action: switch.turn_off
+    target:
+      entity_id: switch.ventilateur_sdb_relay
+  - action: logbook.log
+    data:
+      name: "Sdb FAN"
+      message: "Automation turned off"
+      entity_id: switch.ventilateur_sdb_relay

@@ -1,0 +1,9 @@
+ampli_volume_up:
+    alias: "Ampli Volume Up"
+    sequence:
+      - service: remote.send_command
+        target:
+          entity_id: remote.sauron
+        data:
+          device: ampli
+          command: Volume Up

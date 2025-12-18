@@ -1,0 +1,14 @@
+id: garage_water_tank_filling_notification
+alias: "Water Tank - Filling Notification"
+description: "Send notification when water tank is above 500l"
+triggers:
+  - trigger: numeric_state
+    entity_id: sensor.water_tank_level_litres
+    above: 500
+conditions:
+  - condition: template
+    value_template: "{{ trigger.from_state.state not in ['unavailable', 'unknown'] }}"
+actions:
+  - action: notify.mobile_app_fred_16_pro
+    data:
+      message: "Citerne eau de pluie se rempli à nouveau"

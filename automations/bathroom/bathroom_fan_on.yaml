@@ -1,0 +1,20 @@
+id: bathroom_fan_on
+alias: "Bathroom Fan - Turn On (High Humidity)"
+description: "Turn on bathroom fan when humidity exceeds 60%"
+triggers:
+  - trigger: numeric_state
+    entity_id: sensor.salle_de_bain_humidity
+    above: 60
+conditions:
+  - condition: state
+    entity_id: switch.ventilateur_sdb_relay
+    state: "off"
+actions:
+  - action: switch.turn_on
+    target:
+      entity_id: switch.ventilateur_sdb_relay
+  - action: logbook.log
+    data:
+      name: "Sdb FAN"
+      message: "Automation turned on"
+      entity_id: switch.ventilateur_sdb_relay

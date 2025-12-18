@@ -1,0 +1,9 @@
+proximus_netflix:
+  alias: "Netflix sur Proximus"
+  sequence:
+    action: remote.turn_on
+    target:
+      entity_id: remote.artemis
+    data:
+      activity: com.netflix.ninja
+

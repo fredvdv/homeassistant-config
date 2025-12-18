@@ -1,0 +1,45 @@
+multi_tap_action:
+  alias: Multi Tap Action
+  sequence:
+  - repeat:
+      for_each: '{{actions}}'
+      sequence:
+      - if:
+        - condition: template
+          value_template: '{{repeat.item.entity_id is not defined and repeat.item.data
+            is not defined }}'
+        then:
+          action: '{{ repeat.item.service }}'
+      - if:
+        - condition: template
+          value_template: '{{repeat.item.entity_id is defined and repeat.item.data
+            is not defined }}'
+        then:
+          target:
+            entity_id: '{{repeat.item.entity_id}}'
+          action: '{{ repeat.item.service }}'
+      - if:
+        - condition: template
+          value_template: '{{repeat.item.entity_id is not defined and repeat.item.data
+            is defined }}'
+        then:
+          data: '{{ repeat.item.data }}'
+          action: '{{ repeat.item.service }}'
+      - if:
+        - condition: template
+          value_template: '{{repeat.item.entity_id is defined and repeat.item.data
+            is defined }}'
+        then:
+          target:
+            entity_id: '{{repeat.item.entity_id}}'
+          data: '{{ repeat.item.data }}'
+          action: '{{ repeat.item.service }}'
+      - if:
+        - condition: template
+          value_template: '{{repeat.item.wait is defined}}'
+        then:
+        - delay:
+            hours: 0
+            minutes: 0
+            seconds: 0
+            milliseconds: '{{repeat.item.wait | float}}'

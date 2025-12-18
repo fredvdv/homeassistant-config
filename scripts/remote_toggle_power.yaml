@@ -1,0 +1,13 @@
+remote_toggle_power:
+  sequence:
+  - action: input_boolean.toggle
+    data: {}
+    target:
+      entity_id: '{{ boolean_entity }}'
+  - action: remote.toggle
+    data: {}
+    target:
+      entity_id: '{{ remote_entity }}'
+  alias: Remote Toggle Power
+  description: ''
+

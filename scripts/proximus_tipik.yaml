@@ -1,0 +1,19 @@
+proximus_tipik:
+  alias: "Tipik sur Proximus"
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.artemis
+      data:
+        command: KEYCODE_HOME
+    - delay:
+        seconds: 1
+    - service: remote.send_command
+      target:
+        entity_id: remote.artemis
+      data:
+        command:
+          - KEYCODE_1
+          - KEYCODE_4
+          - KEYCODE_2
+        delay_secs: 0.3
