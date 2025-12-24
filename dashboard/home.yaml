@@ -7,12 +7,12 @@ decluttering_templates:
       mode: horizontal
       cards:
         - type: custom:mushroom-person-card
-          entity: "[[person]]"
+          entity: '[[person]]'
           secondary_info: none
           use_entity_picture: true
           tap_action:
             action: navigate
-            navigation_path: "[[path]]"
+            navigation_path: '[[path]]'
           double_tap_action:
             action: none
           hold_action:
@@ -30,7 +30,7 @@ decluttering_templates:
             - type: custom:mushroom-chips-card
               chips:
                 - type: entity
-                  entity: "[[temperature]]"
+                  entity: '[[temperature]]'
                   card_mod:
                     style: |
                       ha-card {
@@ -39,7 +39,7 @@ decluttering_templates:
                         border-style: hidden;
                       }
                 - type: entity
-                  entity: "[[humidity]]"
+                  entity: '[[humidity]]'
                   card_mod:
                     style: |
                       ha-card {
@@ -61,12 +61,12 @@ decluttering_templates:
       mode: horizontal
       cards:
         - type: custom:mushroom-person-card
-          entity: "[[person1]]"
+          entity: '[[person1]]'
           secondary_info: none
           use_entity_picture: true
           tap_action:
             action: navigate
-            navigation_path: "[[path]]"
+            navigation_path: '[[path]]'
           double_tap_action:
             action: none
           hold_action:
@@ -80,12 +80,12 @@ decluttering_templates:
                 border-style: hidden;
               }
         - type: custom:mushroom-person-card
-          entity: "[[person2]]"
+          entity: '[[person2]]'
           secondary_info: none
           use_entity_picture: true
           tap_action:
             action: navigate
-            navigation_path: "[[path]]"
+            navigation_path: '[[path]]'
           double_tap_action:
             action: none
           hold_action:
@@ -103,7 +103,7 @@ decluttering_templates:
             - type: custom:mushroom-chips-card
               chips:
                 - type: entity
-                  entity: "[[temperature]]"
+                  entity: '[[temperature]]'
                   card_mod:
                     style: |
                       ha-card {
@@ -112,7 +112,7 @@ decluttering_templates:
                         border-style: hidden;
                       }
                 - type: entity
-                  entity: "[[humidity]]"
+                  entity: '[[humidity]]'
                   card_mod:
                     style: |
                       ha-card {
@@ -135,11 +135,11 @@ decluttering_templates:
       cards:
         - type: custom:mushroom-template-card
           layout: horizontal
-          icon: "[[icon]]"
-          primary: "[[name]]"
+          icon: '[[icon]]'
+          primary: '[[name]]'
           tap_action:
             action: navigate
-            navigation_path: "[[path]]"
+            navigation_path: '[[path]]'
           double_tap_action:
             action: none
           hold_action:
@@ -156,7 +156,7 @@ decluttering_templates:
             - type: custom:mushroom-chips-card
               chips:
                 - type: entity
-                  entity: "[[temperature]]"
+                  entity: '[[temperature]]'
                   card_mod:
                     style: |
                       ha-card {
@@ -165,7 +165,7 @@ decluttering_templates:
                         border-style: hidden;
                       }
                 - type: entity
-                  entity: "[[humidity]]"
+                  entity: '[[humidity]]'
                   card_mod:
                     style: |
                       ha-card {
@@ -202,6 +202,7 @@ decluttering_templates:
   remote_button_icon:
     default:
       - remote: remote.artemis
+      - name: ''
       - card_heigth: 50px
       - icon_width: 60px
       - hold_secs: 0
@@ -209,31 +210,32 @@ decluttering_templates:
       - delay_secs: 0.1
     card:
       type: custom:button-card
-      icon: "[[icon]]"
+      name: '[[name]]'
+      icon: '[[icon]]'
       tap_action:
         action: perform-action
         perform_action: remote.send_command
         data:
-          command: "[[tap_command]]"
-          device: "[[device]]"
+          command: '[[tap_command]]'
+          device: '[[device]]'
         target:
-          entity_id: "[[remote]]"
+          entity_id: '[[remote]]'
       hold_action:
         action: perform-action
         perform_action: remote.send_command
         data:
-          command: "[[hold_command]]"
-          device: "[[device]]"
-          hold_secs: "[[hold_secs]]"
-          delay_secs: "[[delay_secs]]"
-          num_repeats: "[[num_repeats]]"
+          command: '[[hold_command]]'
+          device: '[[device]]'
+          hold_secs: '[[hold_secs]]'
+          delay_secs: '[[delay_secs]]'
+          num_repeats: '[[num_repeats]]'
         target:
-          entity_id: "[[remote]]"
+          entity_id: '[[remote]]'
       styles:
         card:
-          - heigth: "[[card_heigth]]"
+          - heigth: '[[card_heigth]]'
         icon:
-          - width: "[[icon_width]]"
+          - width: '[[icon_width]]'
       card_mod:
         style: |
           ha-card {
@@ -249,27 +251,27 @@ decluttering_templates:
       - hold_seconds: 0.1s
     card:
       type: custom:button-card
-      entity_picture: "[[picture]]"
+      entity_picture: '[[picture]]'
       tap_action:
         action: perform-action
         perform_action: remote.send_command
         data:
-          command: "[[tap_command]]"
-          device: "[[device]]"
+          command: '[[tap_command]]'
+          device: '[[device]]'
         target:
-          entity_id: "[[remote]]"
+          entity_id: '[[remote]]'
       hold_action:
         action: perform-action
         perform_action: remote.send_command
         data:
-          command: "[[hold_command]]"
+          command: '[[hold_command]]'
         target:
-          entity_id: "[[remote]]"
+          entity_id: '[[remote]]'
       styles:
         card:
-          - heigth: "[[card_heigth]]"
+          - heigth: '[[card_heigth]]'
         icon:
-          - width: "[[icon_width]]"
+          - width: '[[icon_width]]'
       card_mod:
         style: |
           ha-card {
@@ -285,20 +287,20 @@ decluttering_templates:
       - picture_width: 60px
     card:
       type: custom:button-card
-      entity_picture: "[[picture]]"
+      entity_picture: '[[picture]]'
       show_entity_picture: true
       tap_action:
         action: perform-action
         perform_action: remote.turn_on
         data:
-          activity: "[[tap_activity]]"
+          activity: '[[tap_activity]]'
         target:
-          entity_id: "[[remote]]"
+          entity_id: '[[remote]]'
       styles:
         card:
-          - heigth: "[[card_heigth]]"
+          - heigth: '[[card_heigth]]'
         icon:
-          - width: "[[picture_width]]"
+          - width: '[[picture_width]]'
       card_mod:
         style: |
           ha-card {
@@ -314,7 +316,7 @@ decluttering_templates:
       - picture_width: 60px
     card:
       type: custom:button-card
-      entity_picture: "[[picture]]"
+      entity_picture: '[[picture]]'
       show_entity_picture: true
       tap_action:
         action: call-service
@@ -322,20 +324,20 @@ decluttering_templates:
         service_data:
           actions:
             - service: remote.send_command
-              entity_id: "[[remote]]"
+              entity_id: '[[remote]]'
               data:
                 command: HOME
             - service: media_player.play_media
-              entity_id: "[[media_player]]"
+              entity_id: '[[media_player]]'
               data:
                 media_content_type: channel
-                media_content_id: "[[channel | int]]"
+                media_content_id: '[[channel | int]]'
               wait: 500
       styles:
         card:
-          - heigth: "[[card_heigth]]"
+          - heigth: '[[card_heigth]]'
         icon:
-          - width: "[[picture_width]]"
+          - width: '[[picture_width]]'
       card_mod:
         style: |
           ha-card {
@@ -351,26 +353,26 @@ decluttering_templates:
       - hold_seconds: 0.1s
     card:
       type: custom:button-card
-      icon: "[[icon]]"
+      icon: '[[icon]]'
       tap_action:
-        action: "[[perform-action]]"
+        action: '[[perform-action]]'
         perform_action: remote.send_command
         data:
-          command: "[[tap_command]]"
+          command: '[[tap_command]]'
         target:
-          entity_id: "[[remote]]"
+          entity_id: '[[remote]]'
       hold_action:
         action: perform-action
         perform_action: remote.send_command
         data:
-          command: "[[hold_command]]"
+          command: '[[hold_command]]'
         target:
-          entity_id: "[[remote]]"
+          entity_id: '[[remote]]'
       styles:
         card:
-          - heigth: "[[card_heigth]]"
+          - heigth: '[[card_heigth]]'
         icon:
-          - width: "[[icon_width]]"
+          - width: '[[icon_width]]'
       card_mod:
         style: |
           ha-card {
@@ -393,7 +395,7 @@ button_card_templates:
     styles:
       icon:
         - opacity: 0.7
-        - color: "[[[ return variables.color ]]]"
+        - color: '[[[ return variables.color ]]]'
         - filter: drop-shadow( 0 0 2px rgba(0, 0, 0, .7))
       state:
         - font-size: 1.5em
@@ -418,7 +420,7 @@ button_card_templates:
 views:
   - title: HOME
     visible: true
-    icon: ""
+    icon: ''
     subview: false
     badges: []
     cards: []
@@ -431,7 +433,9 @@ views:
               - type: custom:mushroom-chips-card
                 chips:
                   - type: template
-                    content: "{{states('sensor.system_monitor_processor_temperature') }}°C"
+                    content: >-
+                      {{states('sensor.system_monitor_processor_temperature')
+                      }}°C
                     icon: mdi:fan
                     icon_color: |-
                       {% if states('fan.rpi_cooling_fan') == 'on' -%}
@@ -454,11 +458,42 @@ views:
                 chips:
                   - type: menu
                 alignment: end
-          - show_current: false
-            show_forecast: false
-            type: weather-forecast
-            entity: weather.forecast_home
-            name: Blamont
+          - type: custom:stack-in-card
+            mode: vertical
+            cards:
+              - type: weather-forecast
+                entity: weather.forecast_home
+                name: Blanmont
+                show_current: true
+                show_forecast: false
+              - type: custom:mushroom-chips-card
+                chips:
+                  - type: template
+                    icon: mdi:windsock
+                    content: >-
+                      {{ state_attr('weather.forecast_home', 'wind_speed') |
+                      round(0) }} km/h
+                    icon_color: blue
+                  - type: template
+                    icon: mdi:compass-outline
+                    content: >-
+                      {% set bearing = state_attr('weather.forecast_home',
+                      'wind_bearing') | float(0) %}{% set dirs =
+                      ['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSW','SW','WSW','W','WNW','NW','NNW']
+                      %}{{ dirs[(((bearing + 11.25) % 360) / 22.5) | int] }}
+                    icon_color: cyan
+                  - type: template
+                    icon: mdi:gauge
+                    content: '{{ state_attr(''weather.forecast_home'', ''pressure'') }} hPa'
+                    icon_color: purple
+                  - type: template
+                    icon: mdi:water-percent
+                    content: '{{ state_attr(''weather.forecast_home'', ''humidity'') }}%'
+                    icon_color: teal
+                alignment: justify
+            grid_options:
+              columns: 12
+              rows: 2
           - type: horizontal-stack
             cards:
               - type: custom:button-card
@@ -467,9 +502,9 @@ views:
                 show_name: false
                 color: grey
                 state:
-                  - value: "on"
+                  - value: 'on'
                     color: blue
-                  - value: "off"
+                  - value: 'off'
                     color: grey
                 tap_action:
                   action: toggle
@@ -488,9 +523,9 @@ views:
                 show_name: false
                 color: grey
                 state:
-                  - value: "on"
+                  - value: 'on'
                     color: green
-                  - value: "off"
+                  - value: 'off'
                     color: grey
                 tap_action:
                   action: toggle
@@ -505,9 +540,9 @@ views:
                 show_name: false
                 color: grey
                 state:
-                  - value: "on"
+                  - value: 'on'
                     color: red
-                  - value: "off"
+                  - value: 'off'
                     color: grey
                 confirmation:
                   text: Toggle TV Power?
@@ -543,9 +578,9 @@ views:
             icon: mdi:sofa
             color: grey
             state:
-              - value: "on"
+              - value: 'on'
                 color: yellow
-              - value: "off"
+              - value: 'off'
                 color: grey
           - type: horizontal-stack
             cards:
@@ -586,28 +621,31 @@ views:
               - type: custom:mushroom-chips-card
                 chips:
                   - type: template
-                    content: "{{states('sensor.electricity_meter_voltage_phase_l1') }}V"
+                    content: '{{states(''sensor.electricity_meter_voltage_phase_l1'') }}V'
                     icon: mdi:lightning-bolt
-                    icon_color: |-
-                      {% if states('sensor.electricity_meter_voltage_phase_l1') | int > 240 -%}
+                    icon_color: >-
+                      {% if states('sensor.electricity_meter_voltage_phase_l1')
+                      | int > 250 -%}
                           red
                       {%- else  -%}
                           green
                       {%- endif %}
                   - type: template
-                    content: "{{states('sensor.electricity_meter_voltage_phase_l2') }}V"
+                    content: '{{states(''sensor.electricity_meter_voltage_phase_l2'') }}V'
                     icon: mdi:lightning-bolt
-                    icon_color: |-
-                      {% if states('sensor.electricity_meter_voltage_phase_l2') | int > 240 -%}
+                    icon_color: >-
+                      {% if states('sensor.electricity_meter_voltage_phase_l2')
+                      | int > 250 -%}
                           red
                       {%- else  -%}
                           green
                       {%- endif %}
                   - type: template
-                    content: "{{states('sensor.electricity_meter_voltage_phase_l3') }}V"
+                    content: '{{states(''sensor.electricity_meter_voltage_phase_l3'') }}V'
                     icon: mdi:lightning-bolt
-                    icon_color: |-
-                      {% if states('sensor.electricity_meter_voltage_phase_l3') | int > 240 -%}
+                    icon_color: >-
+                      {% if states('sensor.electricity_meter_voltage_phase_l3')
+                      | int > 250 -%}
                           red
                       {%- else  -%}
                           green
@@ -621,20 +659,23 @@ views:
                     max: 5
                     name: Consommation
                   - type: custom:mushroom-template-card
-                    icon: |-
-                      {% if states('sensor.electricity_meter_power_production') > states('sensor.electricity_meter_power_consumption') -%}
+                    icon: >-
+                      {% if states('sensor.electricity_meter_power_production')
+                      > states('sensor.electricity_meter_power_consumption') -%}
                           mdi:solar-power-variant
                       {%- else  -%}
                           mdi:lightning-bolt
                       {%- endif %}
-                    icon_color: |-
-                      {% if states('sensor.electricity_meter_power_production') > states('sensor.electricity_meter_power_consumption') -%}
+                    icon_color: >-
+                      {% if states('sensor.electricity_meter_power_production')
+                      > states('sensor.electricity_meter_power_consumption') -%}
                           green
                       {%- else  -%}
                           red
                       {%- endif %}
-                    secondary: |-
-                      {% if states('sensor.electricity_meter_power_production') > states('sensor.electricity_meter_power_consumption') -%}
+                    secondary: >-
+                      {% if states('sensor.electricity_meter_power_production')
+                      > states('sensor.electricity_meter_power_consumption') -%}
                           PRODUCTION
                       {%- else  -%}
                           CONSOMMATION
@@ -695,8 +736,42 @@ views:
                       - opacity: 0.7
                       - margin-top: 8px
                 custom_fields:
-                  icon: "[[[\n  const isCharging = states['switch.ecoflow'].state === 'on';\n  const level = parseInt(states['sensor.delta_2_max_0868_battery_level'].state);\n  let icon = 'mdi:battery';\n  let color = '#4caf50';\n  \n  if (level < 20) {\n    icon = isCharging ? 'mdi:battery-charging-20' : 'mdi:battery-20';\n    color = '#f44336';\n  } else if (level < 50) {\n    icon = isCharging ? 'mdi:battery-charging-50' : 'mdi:battery-50';\n    color = '#ff9800';\n  } else if (level < 80) {\n    icon = isCharging ? 'mdi:battery-charging-70' : 'mdi:battery-70';\n  } else {\n    icon = isCharging ? 'mdi:battery-charging-90' : 'mdi:battery-90';\n  }\n  \n  return '<ha-icon icon=\"' + icon + '\" style=\"width:40px; height:40px; color:' + color + ';\"></ha-icon>';\n]]]\n"
-                  info: "[[[\n  const isCharging = states['switch.ecoflow'].state === 'on';\n  const level = states['sensor.delta_2_max_0868_battery_level'].state;\n  const surplus = states['sensor.electricity_surplus']?.state || '0';\n  const status = isCharging ? 'Charging' : 'Standby';\n  const surplusText = parseFloat(surplus) > 0 ? ' • Surplus ' + parseFloat(surplus).toFixed(1) + ' kW' : '';\n  \n  return '<div style=\"font-size:16px; font-weight:500;\">EcoFlow Delta 2</div><div style=\"font-size:13px; opacity:0.7;\">' + status + surplusText + '</div>';\n]]]\n"
+                  icon: |
+                    [[[
+                      const isCharging = states['switch.ecoflow'].state === 'on';
+                      const level = parseInt(states['sensor.delta_2_max_0868_battery_level'].state);
+                      let icon = 'mdi:battery';
+                      let color = '#4caf50';
+                      
+                      if (level < 20) {
+                        icon = isCharging ? 'mdi:battery-charging-20' : 'mdi:battery-20';
+                        color = '#f44336';
+                      } else if (level < 50) {
+                        icon = isCharging ? 'mdi:battery-charging-50' : 'mdi:battery-50';
+                        color = '#ff9800';
+                      } else if (level < 80) {
+                        icon = isCharging ? 'mdi:battery-charging-70' : 'mdi:battery-70';
+                      } else {
+                        icon = isCharging ? 'mdi:battery-charging-90' : 'mdi:battery-90';
+                      }
+                      
+                      return '<ha-icon icon="' + icon + '" style="width:40px; height:40px; color:' + color + ';"></ha-icon>';
+                    ]]]
+                  info: |
+                    [[[
+                      const isCharging = states['switch.ecoflow'].state === 'on';
+                      const level = states['sensor.delta_2_max_0868_battery_level'].state;
+                      const surplus = states['sensor.electricity_surplus']?.state || '0';
+                      const surplusDuration = states['sensor.electricity_surplus_duration']?.state || '0';
+                      const chargePower = states['number.delta_2_max_0868_ac_charging_power']?.state || '0';
+                      const status = isCharging ? 'Charging' : 'Standby';
+                      const surplusVal = parseFloat(surplus);
+                      const durationVal = parseFloat(surplusDuration);
+                      const surplusText = surplusVal > 0.5 ? ' • Surplus ' + surplusVal.toFixed(1) + ' kW (' + durationVal.toFixed(0) + 'min)' : (surplusVal > 0 ? ' • Surplus ' + surplusVal.toFixed(1) + ' kW' : '');
+                      const chargeText = isCharging ? ' • Limit ' + chargePower + 'W' : '';
+                      
+                      return '<div style="font-size:16px; font-weight:500;">EcoFlow Delta 2</div><div style="font-size:13px; opacity:0.7;">' + status + surplusText + chargeText + '</div>';
+                    ]]]
                   battery: |
                     [[[
                       const level = states['sensor.delta_2_max_0868_battery_level'].state;
@@ -704,7 +779,22 @@ views:
                       const color = isCharging ? '#4caf50' : '#2196f3';
                       return '<div style="background:' + color + '; height:100%; width:' + level + '%; border-radius:6px; transition: width 0.5s ease;"></div>';
                     ]]]
-                  power: "[[[\n  const level = states['sensor.delta_2_max_0868_battery_level'].state;\n  const inPower = states['sensor.delta_2_max_0868_ac_in_power'].state;\n  const outPower = states['sensor.delta_2_max_0868_total_out_power'].state;\n  const remainingMins = parseInt(states['sensor.delta_2_max_0868_discharge_remaining_time'].state);\n  \n  let timeStr = '';\n  if (remainingMins > 0) {\n    const hours = Math.floor(remainingMins / 60);\n    const mins = remainingMins % 60;\n    timeStr = hours + 'h' + (mins < 10 ? '0' : '') + mins;\n  }\n  \n  return '<span>' + level + '% • ' + timeStr + '</span><span>⬇️ ' + inPower + 'W  ⬆️ ' + outPower + 'W</span>';\n]]]\n"
+                  power: |
+                    [[[
+                      const level = states['sensor.delta_2_max_0868_battery_level'].state;
+                      const inPower = states['sensor.delta_2_max_0868_ac_in_power'].state;
+                      const outPower = states['sensor.delta_2_max_0868_total_out_power'].state;
+                      const remainingMins = parseInt(states['sensor.delta_2_max_0868_discharge_remaining_time'].state);
+                      
+                      let timeStr = '';
+                      if (remainingMins > 0) {
+                        const hours = Math.floor(remainingMins / 60);
+                        const mins = remainingMins % 60;
+                        timeStr = hours + 'h' + (mins < 10 ? '0' : '') + mins;
+                      }
+                      
+                      return '<span>' + level + '% • ' + timeStr + '</span><span>⬇️ ' + inPower + 'W  ⬆️ ' + outPower + 'W</span>';
+                    ]]]
               - type: horizontal-stack
                 cards:
                   - type: custom:button-card
@@ -720,7 +810,7 @@ views:
                       card:
                         - padding: 12px
                         - border-radius: 0 0 0 12px
-                        - margin-top: -8px
+                        - margin-top: '-8px'
                       icon:
                         - width: 20px
                         - height: 20px
@@ -728,12 +818,12 @@ views:
                         - font-size: 11px
                         - margin-top: 4px
                     state:
-                      - value: "on"
-                        color: "#2196f3"
+                      - value: 'on'
+                        color: '#2196f3'
                         styles:
                           card:
                             - background: rgba(33,150,243,0.2)
-                      - value: "off"
+                      - value: 'off'
                         color: rgba(255,255,255,0.5)
                   - type: custom:button-card
                     entity: switch.delta_2_max_0868_ac_enabled
@@ -748,7 +838,7 @@ views:
                       card:
                         - padding: 12px
                         - border-radius: 0
-                        - margin-top: -8px
+                        - margin-top: '-8px'
                       icon:
                         - width: 20px
                         - height: 20px
@@ -756,12 +846,12 @@ views:
                         - font-size: 11px
                         - margin-top: 4px
                     state:
-                      - value: "on"
-                        color: "#4caf50"
+                      - value: 'on'
+                        color: '#4caf50'
                         styles:
                           card:
                             - background: rgba(76,175,80,0.2)
-                      - value: "off"
+                      - value: 'off'
                         color: rgba(255,255,255,0.5)
                   - type: custom:button-card
                     entity: switch.delta_2_max_0868_usb_enabled
@@ -776,7 +866,7 @@ views:
                       card:
                         - padding: 12px
                         - border-radius: 0
-                        - margin-top: -8px
+                        - margin-top: '-8px'
                       icon:
                         - width: 20px
                         - height: 20px
@@ -784,12 +874,12 @@ views:
                         - font-size: 11px
                         - margin-top: 4px
                     state:
-                      - value: "on"
-                        color: "#4caf50"
+                      - value: 'on'
+                        color: '#4caf50'
                         styles:
                           card:
                             - background: rgba(76,175,80,0.2)
-                      - value: "off"
+                      - value: 'off'
                         color: rgba(255,255,255,0.5)
       - type: grid
         cards:
@@ -928,6 +1018,12 @@ views:
               - path: cave-milieu
               - temperature: sensor.cave_milieu_temperature
               - humidity: sensor.cave_milieu_humidity
+          - type: custom:decluttering-card
+            template: room
+            variables:
+              - icon: mdi:tools
+              - name: Local Technique
+              - path: local-technique
   - title: Chambre Fred
     path: chambre-fred
     subview: false
@@ -969,17 +1065,17 @@ views:
                     hours_to_show: 48
                     color_thresholds:
                       - value: 0
-                        color: "#0000FF"
+                        color: '#0000FF'
                       - value: 15
-                        color: "#00FFFF"
+                        color: '#00FFFF'
                       - value: 20
-                        color: "#008000"
+                        color: '#008000'
                       - value: 22
-                        color: "#FFFF00"
+                        color: '#FFFF00'
                       - value: 23
-                        color: "#FF8000"
+                        color: '#FF8000'
                       - value: 26
-                        color: "#FF0000"
+                        color: '#FF0000'
                     card_mod:
                       style: |
                         ha-card {
@@ -1062,17 +1158,17 @@ views:
                     hours_to_show: 48
                     color_thresholds:
                       - value: 0
-                        color: "#0000FF"
+                        color: '#0000FF'
                       - value: 15
-                        color: "#00FFFF"
+                        color: '#00FFFF'
                       - value: 20
-                        color: "#008000"
+                        color: '#008000'
                       - value: 22
-                        color: "#FFFF00"
+                        color: '#FFFF00'
                       - value: 23
-                        color: "#FF8000"
+                        color: '#FF8000'
                       - value: 26
-                        color: "#FF0000"
+                        color: '#FF0000'
                     card_mod:
                       style: |
                         ha-card {
@@ -1139,17 +1235,17 @@ views:
                     hours_to_show: 48
                     color_thresholds:
                       - value: 0
-                        color: "#0000FF"
+                        color: '#0000FF'
                       - value: 15
-                        color: "#00FFFF"
+                        color: '#00FFFF'
                       - value: 20
-                        color: "#008000"
+                        color: '#008000'
                       - value: 22
-                        color: "#FFFF00"
+                        color: '#FFFF00'
                       - value: 23
-                        color: "#FF8000"
+                        color: '#FF8000'
                       - value: 26
-                        color: "#FF0000"
+                        color: '#FF0000'
                     card_mod:
                       style: |
                         ha-card {
@@ -1216,17 +1312,17 @@ views:
                     hours_to_show: 48
                     color_thresholds:
                       - value: 0
-                        color: "#0000FF"
+                        color: '#0000FF'
                       - value: 15
-                        color: "#00FFFF"
+                        color: '#00FFFF'
                       - value: 20
-                        color: "#008000"
+                        color: '#008000'
                       - value: 22
-                        color: "#FFFF00"
+                        color: '#FFFF00'
                       - value: 23
-                        color: "#FF8000"
+                        color: '#FF8000'
                       - value: 26
-                        color: "#FF0000"
+                        color: '#FF0000'
                     card_mod:
                       style: |
                         ha-card {
@@ -1294,17 +1390,17 @@ views:
                     hours_to_show: 48
                     color_thresholds:
                       - value: 0
-                        color: "#0000FF"
+                        color: '#0000FF'
                       - value: 15
-                        color: "#00FFFF"
+                        color: '#00FFFF'
                       - value: 20
-                        color: "#008000"
+                        color: '#008000'
                       - value: 22
-                        color: "#FFFF00"
+                        color: '#FFFF00'
                       - value: 23
-                        color: "#FF8000"
+                        color: '#FF8000'
                       - value: 26
-                        color: "#FF0000"
+                        color: '#FF0000'
                     card_mod:
                       style: |
                         ha-card {
@@ -1338,9 +1434,9 @@ views:
                 show_name: false
                 color: grey
                 state:
-                  - value: "on"
+                  - value: 'on'
                     color: blue
-                  - value: "off"
+                  - value: 'off'
                     color: grey
                 tap_action:
                   action: toggle
@@ -1359,9 +1455,9 @@ views:
                 show_name: false
                 color: grey
                 state:
-                  - value: "on"
+                  - value: 'on'
                     color: green
-                  - value: "off"
+                  - value: 'off'
                     color: grey
                 tap_action:
                   action: toggle
@@ -1376,9 +1472,9 @@ views:
                 show_name: false
                 color: grey
                 state:
-                  - value: "on"
+                  - value: 'on'
                     color: red
-                  - value: "off"
+                  - value: 'off'
                     color: grey
                 confirmation:
                   text: Toggle TV Power?
@@ -1449,17 +1545,17 @@ views:
                     hours_to_show: 48
                     color_thresholds:
                       - value: 0
-                        color: "#0000FF"
+                        color: '#0000FF'
                       - value: 15
-                        color: "#00FFFF"
+                        color: '#00FFFF'
                       - value: 20
-                        color: "#008000"
+                        color: '#008000'
                       - value: 22
-                        color: "#FFFF00"
+                        color: '#FFFF00'
                       - value: 23
-                        color: "#FF8000"
+                        color: '#FF8000'
                       - value: 26
-                        color: "#FF0000"
+                        color: '#FF0000'
                     card_mod:
                       style: |
                         ha-card {
@@ -1539,40 +1635,58 @@ views:
             state:
               - value: inactive
                 custom_fields:
-                  icon: <ha-icon icon="mdi:dishwasher-off" style="width:40px; height:40px; color:grey;"></ha-icon>
+                  icon: >-
+                    <ha-icon icon="mdi:dishwasher-off" style="width:40px;
+                    height:40px; color:grey;"></ha-icon>
               - value: ready
                 custom_fields:
-                  icon: <ha-icon icon="mdi:dishwasher" style="width:40px; height:40px; color:grey;"></ha-icon>
+                  icon: >-
+                    <ha-icon icon="mdi:dishwasher" style="width:40px;
+                    height:40px; color:grey;"></ha-icon>
               - value: run
                 custom_fields:
-                  icon: <ha-icon icon="mdi:dishwasher" style="width:40px; height:40px; color:#4caf50;"></ha-icon>
+                  icon: >-
+                    <ha-icon icon="mdi:dishwasher" style="width:40px;
+                    height:40px; color:#4caf50;"></ha-icon>
               - value: finished
                 custom_fields:
-                  icon: <ha-icon icon="mdi:check-circle" style="width:40px; height:40px; color:#4caf50;"></ha-icon>
+                  icon: >-
+                    <ha-icon icon="mdi:check-circle" style="width:40px;
+                    height:40px; color:#4caf50;"></ha-icon>
               - value: delayedstart
                 custom_fields:
-                  icon: <ha-icon icon="mdi:timer-sand" style="width:40px; height:40px; color:#2196f3;"></ha-icon>
+                  icon: >-
+                    <ha-icon icon="mdi:timer-sand" style="width:40px;
+                    height:40px; color:#2196f3;"></ha-icon>
               - value: actionrequired
                 styles:
                   card:
                     - animation: blink 2s ease infinite
                 custom_fields:
-                  icon: <ha-icon icon="mdi:dishwasher-alert" style="width:40px; height:40px; color:#f44336;"></ha-icon>
+                  icon: >-
+                    <ha-icon icon="mdi:dishwasher-alert" style="width:40px;
+                    height:40px; color:#f44336;"></ha-icon>
               - value: error
                 styles:
                   card:
                     - animation: blink 2s ease infinite
                 custom_fields:
-                  icon: <ha-icon icon="mdi:dishwasher-alert" style="width:40px; height:40px; color:#ff9800;"></ha-icon>
+                  icon: >-
+                    <ha-icon icon="mdi:dishwasher-alert" style="width:40px;
+                    height:40px; color:#ff9800;"></ha-icon>
               - value: pause
                 custom_fields:
-                  icon: <ha-icon icon="mdi:pause-circle" style="width:40px; height:40px; color:#2196f3;"></ha-icon>
+                  icon: >-
+                    <ha-icon icon="mdi:pause-circle" style="width:40px;
+                    height:40px; color:#2196f3;"></ha-icon>
               - value: aborting
                 styles:
                   card:
                     - animation: blink 2s ease infinite
                 custom_fields:
-                  icon: <ha-icon icon="mdi:cancel" style="width:40px; height:40px; color:#f44336;"></ha-icon>
+                  icon: >-
+                    <ha-icon icon="mdi:cancel" style="width:40px; height:40px;
+                    color:#f44336;"></ha-icon>
             custom_fields:
               icon: |
                 [[[
@@ -1683,17 +1797,17 @@ views:
                 hours_to_show: 48
                 color_thresholds:
                   - value: 0
-                    color: "#0000FF"
+                    color: '#0000FF'
                   - value: 15
-                    color: "#00FFFF"
+                    color: '#00FFFF'
                   - value: 20
-                    color: "#008000"
+                    color: '#008000'
                   - value: 22
-                    color: "#FFFF00"
+                    color: '#FFFF00'
                   - value: 23
-                    color: "#FF8000"
+                    color: '#FF8000'
                   - value: 26
-                    color: "#FF0000"
+                    color: '#FF0000'
                 card_mod:
                   style: |
                     ha-card {
@@ -1727,9 +1841,9 @@ views:
                 show_name: false
                 color: grey
                 state:
-                  - value: "on"
+                  - value: 'on'
                     color: blue
-                  - value: "off"
+                  - value: 'off'
                     color: grey
                 tap_action:
                   action: toggle
@@ -1746,7 +1860,15 @@ views:
             cards:
               - type: custom:button-card
                 entity: switch.ecoflow
-                name: "[[[\n  var cons = states['sensor.ecoflow_current_consumption'].state;\n  if (entity.state)\n    return \"EcoFlow (\"+ cons +\" W)\";\n  else \n    return \"EcoFlow éteint\";\n  \n]]]\n"
+                name: |
+                  [[[
+                    var cons = states['sensor.ecoflow_current_consumption'].state;
+                    if (entity.state)
+                      return "EcoFlow ("+ cons +" W)";
+                    else 
+                      return "EcoFlow éteint";
+                    
+                  ]]]
                 show_icon: true
                 show_state: false
                 layout: icon_name
@@ -1754,9 +1876,9 @@ views:
                   action: toggle
                 icon_color: green
                 state:
-                  - value: "on"
+                  - value: 'on'
                     icon: mdi:battery-charging
-                  - value: "off"
+                  - value: 'off'
                     icon: mdi:battery-arrow-down-outline
                 styles:
                   grid:
@@ -1764,7 +1886,13 @@ views:
                   icon:
                     - width: 65px
                     - padding-left: 20px
-                    - color: "[[[ \n  var cons = states['sensor.ecoflow_current_consumption'].state;\n  if (entity.state == \"on\" && cons > 0) return \"red\" ;\n  else if (entity.state == \"on\") return \"green\" ;\n  else return \"grey\"; \n]]]\n"
+                    - color: |
+                        [[[ 
+                          var cons = states['sensor.ecoflow_current_consumption'].state;
+                          if (entity.state == "on" && cons > 0) return "red" ;
+                          else if (entity.state == "on") return "green" ;
+                          else return "grey"; 
+                        ]]]
                   name:
                     - text-wrap: balance
                     - font-size: 1.4em
@@ -1780,10 +1908,11 @@ views:
               - type: custom:mushroom-chips-card
                 chips:
                   - type: template
-                    content: "{{states('sensor.proximus_b_box_external_ip') }}"
+                    content: '{{states(''sensor.proximus_b_box_external_ip'') }}'
                     icon: mdi:web
-                    icon_color: |-
-                      {% if states('binary_sensor.proximus_b_box_wan_status') == 'on' -%}
+                    icon_color: >-
+                      {% if states('binary_sensor.proximus_b_box_wan_status') ==
+                      'on' -%}
                           green
                       {%- else  -%}
                           red
@@ -1792,7 +1921,9 @@ views:
               - type: custom:mushroom-chips-card
                 chips:
                   - type: template
-                    content: "{{ states('sensor.proximus_b_box_uptime') | int | timestamp_custom('%dd %Hh %Ss', false) }}"
+                    content: >-
+                      {{ states('sensor.proximus_b_box_uptime') | int |
+                      timestamp_custom('%dd %Hh %Ss', false) }}
                     icon: mdi:clock-time-eight-outline
                 alignment: end
           - type: horizontal-stack
@@ -1858,7 +1989,7 @@ views:
                         m:
                           - width: 80%
                           - margin: auto
-                        y:
+                        'y':
                           - width: 80%
                           - margin: auto
                     custom_fields:
@@ -1866,7 +1997,8 @@ views:
                         card:
                           type: custom:button-card
                           template: inkwell
-                          entity: sensor.brother_hl_3140cw_series_black_toner_cartridge
+                          entity: >-
+                            sensor.brother_hl_3140cw_series_black_toner_cartridge
                           variables:
                             color: black
                       c:
@@ -1880,14 +2012,16 @@ views:
                         card:
                           type: custom:button-card
                           template: inkwell
-                          entity: sensor.brother_hl_3140cw_series_magenta_toner_cartridge
+                          entity: >-
+                            sensor.brother_hl_3140cw_series_magenta_toner_cartridge
                           variables:
                             color: magenta
-                      y:
+                      'y':
                         card:
                           type: custom:button-card
                           template: inkwell
-                          entity: sensor.brother_hl_3140cw_series_yellow_toner_cartridge
+                          entity: >-
+                            sensor.brother_hl_3140cw_series_yellow_toner_cartridge
                           variables:
                             color: yellow
   - title: Salle de bain
@@ -1931,17 +2065,17 @@ views:
                     hours_to_show: 48
                     color_thresholds:
                       - value: 0
-                        color: "#0000FF"
+                        color: '#0000FF'
                       - value: 15
-                        color: "#00FFFF"
+                        color: '#00FFFF'
                       - value: 20
-                        color: "#008000"
+                        color: '#008000'
                       - value: 22
-                        color: "#FFFF00"
+                        color: '#FFFF00'
                       - value: 23
-                        color: "#FF8000"
+                        color: '#FF8000'
                       - value: 26
-                        color: "#FF0000"
+                        color: '#FF0000'
                     card_mod:
                       style: |
                         ha-card {
@@ -1973,12 +2107,12 @@ views:
             name: Extracteur
             show_name: true
             state:
-              - value: "off"
+              - value: 'off'
                 color: grey
                 styles:
                   icon:
                     - animation: null
-              - value: "on"
+              - value: 'on'
                 color: green
                 styles:
                   icon:
@@ -2032,17 +2166,17 @@ views:
                     hours_to_show: 48
                     color_thresholds:
                       - value: 0
-                        color: "#0000FF"
+                        color: '#0000FF'
                       - value: 15
-                        color: "#00FFFF"
+                        color: '#00FFFF'
                       - value: 20
-                        color: "#008000"
+                        color: '#008000'
                       - value: 22
-                        color: "#FFFF00"
+                        color: '#FFFF00'
                       - value: 23
-                        color: "#FF8000"
+                        color: '#FF8000'
                       - value: 26
-                        color: "#FF0000"
+                        color: '#FF0000'
                     card_mod:
                       style: |
                         ha-card {
@@ -2109,17 +2243,17 @@ views:
                     hours_to_show: 48
                     color_thresholds:
                       - value: 0
-                        color: "#0000FF"
+                        color: '#0000FF'
                       - value: 15
-                        color: "#00FFFF"
+                        color: '#00FFFF'
                       - value: 20
-                        color: "#008000"
+                        color: '#008000'
                       - value: 22
-                        color: "#FFFF00"
+                        color: '#FFFF00'
                       - value: 23
-                        color: "#FF8000"
+                        color: '#FF8000'
                       - value: 26
-                        color: "#FF0000"
+                        color: '#FF0000'
                     card_mod:
                       style: |
                         ha-card {
@@ -2186,17 +2320,17 @@ views:
                     hours_to_show: 48
                     color_thresholds:
                       - value: 0
-                        color: "#0000FF"
+                        color: '#0000FF'
                       - value: 15
-                        color: "#00FFFF"
+                        color: '#00FFFF'
                       - value: 20
-                        color: "#008000"
+                        color: '#008000'
                       - value: 22
-                        color: "#FFFF00"
+                        color: '#FFFF00'
                       - value: 23
-                        color: "#FF8000"
+                        color: '#FF8000'
                       - value: 26
-                        color: "#FF0000"
+                        color: '#FF0000'
                     card_mod:
                       style: |
                         ha-card {
@@ -2263,17 +2397,17 @@ views:
                     hours_to_show: 48
                     color_thresholds:
                       - value: 0
-                        color: "#0000FF"
+                        color: '#0000FF'
                       - value: 15
-                        color: "#00FFFF"
+                        color: '#00FFFF'
                       - value: 20
-                        color: "#008000"
+                        color: '#008000'
                       - value: 22
-                        color: "#FFFF00"
+                        color: '#FFFF00'
                       - value: 23
-                        color: "#FF8000"
+                        color: '#FF8000'
                       - value: 26
-                        color: "#FF0000"
+                        color: '#FF0000'
                     card_mod:
                       style: |
                         ha-card {
@@ -2340,17 +2474,17 @@ views:
                     hours_to_show: 48
                     color_thresholds:
                       - value: 0
-                        color: "#0000FF"
+                        color: '#0000FF'
                       - value: 15
-                        color: "#00FFFF"
+                        color: '#00FFFF'
                       - value: 20
-                        color: "#008000"
+                        color: '#008000'
                       - value: 22
-                        color: "#FFFF00"
+                        color: '#FFFF00'
                       - value: 23
-                        color: "#FF8000"
+                        color: '#FF8000'
                       - value: 26
-                        color: "#FF0000"
+                        color: '#FF0000'
                     card_mod:
                       style: |
                         ha-card {
@@ -2384,21 +2518,21 @@ views:
               action: toggle
               entity: button.garage_door
             state:
-              - value: "0.0"
-                operator: ==
+              - value: '0.0'
+                operator: '=='
                 name: Porte de garage fermée
                 color: green
                 icon: mdi:garage-variant
-              - value: "1.0"
-                operator: ==
+              - value: '1.0'
+                operator: '=='
                 name: Porte de garage en mouvement
                 color: orange
                 icon: mdi:garage-alert-variant
                 styles:
                   icon:
                     - animation: blink 2s ease infinite
-              - value: "2.0"
-                operator: ==
+              - value: '2.0'
+                operator: '=='
                 name: Porte de garage ouverte
                 color: red
                 icon: mdi:garage-open-variant
@@ -2414,8 +2548,10 @@ views:
           - type: custom:mushroom-template-card
             entity: binary_sensor.tapo_c100_1_cell_motion_detection
             icon: mdi:human
-            icon_color: |-
-              {% if is_state('binary_sensor.tapo_c100_1_cell_motion_detection','on') -%}
+            icon_color: >-
+              {% if
+              is_state('binary_sensor.tapo_c100_1_cell_motion_detection','on')
+              -%}
                 green
               {%- else -%}
                 grey
@@ -2428,13 +2564,15 @@ views:
               action: none
             fill_container: true
             layout: horizontal
-            primary: |-
-              {% if is_state('binary_sensor.tapo_c100_1_cell_motion_detection','on') -%}
+            primary: >-
+              {% if
+              is_state('binary_sensor.tapo_c100_1_cell_motion_detection','on')
+              -%}
                 Activité détectée
               {%- else -%}
                 Aucune activité
               {%- endif %}
-            secondary: "{% states('binary_sensor.tapo_c100_1_cell_motion_detection') %}"
+            secondary: '{% states(''binary_sensor.tapo_c100_1_cell_motion_detection'') %}'
           - type: gauge
             name: Citerne
             needle: true
@@ -2446,7 +2584,7 @@ views:
             max: 5000
             unit: L
     max_columns: 4
-    icon: ""
+    icon: ''
   - title: Cave Hall
     path: cave-hall
     subview: false
@@ -2488,17 +2626,17 @@ views:
                     hours_to_show: 48
                     color_thresholds:
                       - value: 0
-                        color: "#0000FF"
+                        color: '#0000FF'
                       - value: 15
-                        color: "#00FFFF"
+                        color: '#00FFFF'
                       - value: 20
-                        color: "#008000"
+                        color: '#008000'
                       - value: 22
-                        color: "#FFFF00"
+                        color: '#FFFF00'
                       - value: 23
-                        color: "#FF8000"
+                        color: '#FF8000'
                       - value: 26
-                        color: "#FF0000"
+                        color: '#FF0000'
                     card_mod:
                       style: |
                         ha-card {
@@ -2565,17 +2703,17 @@ views:
                     hours_to_show: 48
                     color_thresholds:
                       - value: 0
-                        color: "#0000FF"
+                        color: '#0000FF'
                       - value: 15
-                        color: "#00FFFF"
+                        color: '#00FFFF'
                       - value: 20
-                        color: "#008000"
+                        color: '#008000'
                       - value: 22
-                        color: "#FFFF00"
+                        color: '#FFFF00'
                       - value: 23
-                        color: "#FF8000"
+                        color: '#FF8000'
                       - value: 26
-                        color: "#FF0000"
+                        color: '#FF0000'
                     card_mod:
                       style: |
                         ha-card {
@@ -2642,17 +2780,17 @@ views:
                     hours_to_show: 48
                     color_thresholds:
                       - value: 0
-                        color: "#0000FF"
+                        color: '#0000FF'
                       - value: 15
-                        color: "#00FFFF"
+                        color: '#00FFFF'
                       - value: 20
-                        color: "#008000"
+                        color: '#008000'
                       - value: 22
-                        color: "#FFFF00"
+                        color: '#FFFF00'
                       - value: 23
-                        color: "#FF8000"
+                        color: '#FF8000'
                       - value: 26
-                        color: "#FF0000"
+                        color: '#FF0000'
                     card_mod:
                       style: |
                         ha-card {
@@ -2704,7 +2842,7 @@ views:
                       box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0)
                       border-radius: 10px
                       pointer-events: none
-                      color: "#FFFFFF"
+                      color: '#FFFFFF'
               - type: state-label
                 entity: sensor.bambulab_fred_p1s_ams_1_tray_1
                 tap_action:
@@ -2731,11 +2869,11 @@ views:
                 style:
                   top: 28%
                   left: 21.4%
-                  --paper-item-icon-color: white
+                  '--paper-item-icon-color': white
                   background-color: rgba(0,0,0,0.5)
                   box-shadow: 0 0 5px 5px var(--tray_1_bg)
                   border-radius: 50px
-                  --mdc-icon-size: 2.4em
+                  '--mdc-icon-size': 2.4em
               - type: state-label
                 entity: sensor.bambulab_fred_p1s_ams_1_tray_1
                 attribute: type
@@ -2750,7 +2888,7 @@ views:
                   box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.4)
                   border-radius: 50px
                   pointer-events: none
-                  color: "#FFFFFF"
+                  color: '#FFFFFF'
               - type: state-label
                 entity: sensor.bambulab_fred_p1s_ams_1_tray_2
                 tap_action:
@@ -2777,11 +2915,11 @@ views:
                 style:
                   top: 28%
                   left: 39.7%
-                  --paper-item-icon-color: white
+                  '--paper-item-icon-color': white
                   background-color: rgba(0,0,0,0.5)
                   box-shadow: 0 0 5px 5px  var(--tray_2_bg)
                   border-radius: 50px
-                  --mdc-icon-size: 2.4em
+                  '--mdc-icon-size': 2.4em
               - type: state-label
                 entity: sensor.bambulab_fred_p1s_ams_1_tray_2
                 attribute: type
@@ -2796,7 +2934,7 @@ views:
                   box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.4)
                   border-radius: 50px
                   pointer-events: none
-                  color: "#FFFFFF"
+                  color: '#FFFFFF'
               - type: state-label
                 entity: sensor.bambulab_fred_p1s_ams_1_tray_3
                 tap_action:
@@ -2823,11 +2961,11 @@ views:
                 style:
                   top: 28%
                   left: 59.7%
-                  --paper-item-icon-color: white
+                  '--paper-item-icon-color': white
                   background-color: rgba(0,0,0,0.5)
                   box-shadow: 0 0 5px 5px  var(--tray_3_bg)
                   border-radius: 50px
-                  --mdc-icon-size: 2.4em
+                  '--mdc-icon-size': 2.4em
               - type: state-label
                 entity: sensor.bambulab_fred_p1s_ams_1_tray_3
                 attribute: type
@@ -2842,7 +2980,7 @@ views:
                   box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.4)
                   border-radius: 50px
                   pointer-events: none
-                  color: "#FFFFFF"
+                  color: '#FFFFFF'
               - type: state-label
                 entity: sensor.bambulab_fred_p1s_ams_1_tray_4
                 tap_action:
@@ -2869,11 +3007,11 @@ views:
                 style:
                   top: 28%
                   left: 79.6%
-                  --paper-item-icon-color: white
+                  '--paper-item-icon-color': white
                   background-color: rgba(0,0,0,0.5)
                   box-shadow: 0 0 5px 5px var(--tray_4_bg)
                   border-radius: 50px
-                  --mdc-icon-size: 2.4em
+                  '--mdc-icon-size': 2.4em
               - type: state-label
                 entity: sensor.bambulab_fred_p1s_ams_1_tray_4
                 attribute: type
@@ -2888,7 +3026,7 @@ views:
                   box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.4)
                   border-radius: 50px
                   pointer-events: none
-                  color: "#FFFFFF"
+                  color: '#FFFFFF'
               - type: conditional
                 conditions:
                   - entity: sensor.bambulab_fred_p1s_print_status
@@ -2914,14 +3052,17 @@ views:
                 element:
                   type: state-icon
                   entity: sensor.bambulab_fred_p1s_ams_1_humidity_index
-                  icon: ${'fapro:humidity-level-dark-' + states['sensor.bambulab_fred_p1s_ams_1_humidity_index'].state + '#fullcolor'}
+                  icon: >-
+                    ${'fapro:humidity-level-dark-' +
+                    states['sensor.bambulab_fred_p1s_ams_1_humidity_index'].state
+                    + '#fullcolor'}
                 style:
                   top: 38.5%
                   left: 92.5%
-                  background-color: "#1c1c1c"
+                  background-color: '#1c1c1c'
                   border-radius: 50px
                   border: 0.12em solid var(--humidity-border-color)
-                  --mdc-icon-size: 2.05em
+                  '--mdc-icon-size': 2.05em
             image: /local/media/bambuprinter/AMS_2.png
             card_mod:
               style: |
@@ -2952,21 +3093,24 @@ views:
                     element:
                       type: state-icon
                       entity: sensor.bambulab_fred_p1s_wi_fi_signal
-                      icon: |-
-                        ${states['sensor.bambulab_fred_p1s_wi_fi_signal'].state > -50 ? 'mdi:wifi-strength-4' :
+                      icon: >-
+                        ${states['sensor.bambulab_fred_p1s_wi_fi_signal'].state
+                        > -50 ? 'mdi:wifi-strength-4' :
                           states['sensor.bambulab_fred_p1s_wi_fi_signal'].state > -60 ?
                         'mdi:wifi-strength-3' :
                           states['sensor.bambulab_fred_p1s_wi_fi_signal'].state > -67 ?
                         'mdi:wifi-strength-2' :
                           states['sensor.bambulab_fred_p1s_wi_fi_signal'].state > -70 ?
-                        'mdi:wifi-strength-1-alert' : 'mdi:wifi-strength-outline'}
+                        'mdi:wifi-strength-1-alert' :
+                        'mdi:wifi-strength-outline'}
                     style:
                       left: 67%
                       top: 13.2%
                       font-size: 0.8em
                       color: rgba(0,0,0,0)
-                      --paper-item-icon-color: |-
-                        ${states['sensor.bambulab_fred_p1s_wi_fi_signal'].state > -50 ? 'green' :
+                      '--paper-item-icon-color': >-
+                        ${states['sensor.bambulab_fred_p1s_wi_fi_signal'].state
+                        > -50 ? 'green' :
                           states['sensor.bambulab_fred_p1s_wi_fi_signal'].state > -60 ?
                         'yellow' :
                           states['sensor.bambulab_fred_p1s_wi_fi_signal'].state > -67 ?
@@ -2978,7 +3122,7 @@ views:
                     style:
                       top: 46%
                       left: 18%
-                      --mdc-icon-size: 2.6em
+                      '--mdc-icon-size': 2.6em
                     tap_action:
                       action: toggle
                   - entity: sensor.bambulab_fred_p1s_print_status
@@ -2987,7 +3131,7 @@ views:
                       top: 6.5%
                       left: 23.69%
                       font-size: 1em
-                      color: "#FFFFFF"
+                      color: '#FFFFFF'
                   - type: conditional
                     conditions:
                       - entity: sensor.bambulab_fred_p1s_print_status
@@ -3009,8 +3153,8 @@ views:
                               top: 50%
                               left: 50%
                               transform: translate(-45%, -40%) scale(75%, 75%)
-                              --ha-card-border-width: 0px
-                              --ha-card-background: none
+                              '--ha-card-border-width': 0px
+                              '--ha-card-background': none
                       - entity: sensor.bambulab_fred_p1s_print_progress
                         type: state-badge
                         tap_action:
@@ -3020,7 +3164,7 @@ views:
                           left: 81%
                           font-size: 1em
                           color: rgba(0,0,0,0)
-                          --label-badge-red: "#11739D"
+                          '--label-badge-red': '#11739D'
                   - entity: sensor.bambulab_fred_p1s_nozzle_temperature
                     type: state-badge
                     style:
@@ -3060,14 +3204,14 @@ views:
             entity: light.bambu_fred_p1s_chamber_light
             state_image:
               unavailable: /local/media/bambuprinter/off_p1s.png
-              "on": /local/media/bambuprinter/on_p1s.png
-              "off": /local/media/bambuprinter/off_p1s.png
+              'on': /local/media/bambuprinter/on_p1s.png
+              'off': /local/media/bambuprinter/off_p1s.png
           - type: vertical-stack
             cards:
               - type: vertical-stack
                 cards:
                   - type: custom:mushroom-title-card
-                    title: ""
+                    title: ''
                     subtitle: Print Details
                     alignment: center
                   - type: custom:mushroom-entity-card
@@ -3083,7 +3227,9 @@ views:
                       - type: custom:mushroom-template-card
                         primary: Layer
                         icon_color: var(--rgb-state-entity)
-                        secondary: "{{states('sensor.bambulab_fred_p1s_current_layer')}} / {{states('sensor.bambulab_fred_p1s_total_layer_count')}}"
+                        secondary: >-
+                          {{states('sensor.bambulab_fred_p1s_current_layer')}} /
+                          {{states('sensor.bambulab_fred_p1s_total_layer_count')}}
                         icon: mdi:layers
       - type: grid
         cards:
@@ -3105,10 +3251,10 @@ views:
                 confirmation:
                   text: Toggle Printer Power?
                 state:
-                  - value: "on"
+                  - value: 'on'
                     icon: mdi:power
                     color: green
-                  - value: "off"
+                  - value: 'off'
                     icon: mdi:power
                     color: grey
                 styles:
@@ -3231,8 +3377,9 @@ views:
                       pause_entity: button.bambulab_fred_p1s_pause_printing
                       start_entity: button.bambulab_fred_p1s_resume_printing
                     entity: sensor.bambulab_fred_p1s_print_status
-                    name: |
-                      [[[  if (entity.state.toUpperCase() == 'RUNNING') return "Pause";
+                    name: >
+                      [[[  if (entity.state.toUpperCase() == 'RUNNING') return
+                      "Pause";
                        else if (entity.state.toUpperCase() == 'PAUSE') return "Resume";
                       else return '';  ]]]
                     state:
@@ -3279,17 +3426,39 @@ views:
                         icon: mdi:void
                         color: grey
                     tap_action:
-                      action: "[[[ if (entity.state.toUpperCase() == 'RUNNING' || entity.state.toUpperCase() == 'PAUSE') return \"call-service\"; \nelse return \"none\";\n]]]\n"
+                      action: >
+                        [[[ if (entity.state.toUpperCase() == 'RUNNING' ||
+                        entity.state.toUpperCase() == 'PAUSE') return
+                        "call-service"; 
+
+                        else return "none";
+
+                        ]]]
                       service: button.press
                       service_data:
-                        entity_id: "[[[ if (states['sensor.bambulab_fred_p1s_print_status'].state.toUpperCase() == 'RUNNING') \n    return variables.pause_entity; \n    if (states['sensor.bambulab_fred_p1s_print_status'].state.toUpperCase() == 'PAUSE') \n    return variables.start_entity; \n  else return \"\";\n  ]]]\n"
+                        entity_id: >
+                          [[[ if
+                          (states['sensor.bambulab_fred_p1s_print_status'].state.toUpperCase()
+                          == 'RUNNING') 
+                              return variables.pause_entity; 
+                              if (states['sensor.bambulab_fred_p1s_print_status'].state.toUpperCase() == 'PAUSE') 
+                              return variables.start_entity; 
+                            else return "";
+                            ]]]
                     card_mod:
-                      style: "ha-card {\n  box-shadow: none !important;\n  background-color: rgba(0,0,0,0);\n  border: none;\n  --paper-item-icon-color: {% if is_state('sensor.bambulab_fred_p1s_print_status', 'RUNNING') or is_state('sensor.bambulab_fred_p1s_print_status', 'PAUSE') or is_state('sensor.bambulab_fred_p1s_print_status', 'running') or is_state('sensor.bambulab_fred_p1s_print_status', 'pause') %} orange; {% else %} grey; {% endif %}    \n}\n"
+                      style: |
+                        ha-card {
+                          box-shadow: none !important;
+                          background-color: rgba(0,0,0,0);
+                          border: none;
+                          --paper-item-icon-color: {% if is_state('sensor.bambulab_fred_p1s_print_status', 'RUNNING') or is_state('sensor.bambulab_fred_p1s_print_status', 'PAUSE') or is_state('sensor.bambulab_fred_p1s_print_status', 'running') or is_state('sensor.bambulab_fred_p1s_print_status', 'pause') %} orange; {% else %} grey; {% endif %}    
+                        }
                   - type: custom:gap-card
                   - type: custom:button-card
                     entity: sensor.bambulab_fred_p1s_print_status
-                    name: |
-                      [[[  if (entity.state.toUpperCase() == 'RUNNING') return "Cancel";
+                    name: >
+                      [[[  if (entity.state.toUpperCase() == 'RUNNING') return
+                      "Cancel";
                        else if (entity.state.toUpperCase() =='PAUSE') return "Cancel";
                       else return '';  ]]]
                     confirmation:
@@ -3338,8 +3507,10 @@ views:
                         icon: mdi:void
                         color: grey
                     tap_action:
-                      action: |
-                        [[[ if (entity.state.toUpperCase() == 'RUNNING' || entity.state.toUpperCase() == 'PAUSE') return "call-service";  else return "none"; ]]]
+                      action: >
+                        [[[ if (entity.state.toUpperCase() == 'RUNNING' ||
+                        entity.state.toUpperCase() == 'PAUSE') return
+                        "call-service";  else return "none"; ]]]
                       service: button.press
                       service_data:
                         entity_id: button.bambulab_fred_p1s_stop_printing
@@ -3805,12 +3976,112 @@ views:
                     template: remote_button_icon
                     variables:
                       - icon: mdi:projector
-                      - remote: remote.sauron
-                      - device: projecteur
-                      - tap_command: Power
+                      - remote: remote.elrond
+                      - tap_command: POWER
       - type: grid
         cards:
-          - title: HDX
+          - title: Projo
+            type: vertical-stack
+            cards:
+              - square: false
+                type: grid
+                columns: 5
+                cards:
+                  - type: custom:decluttering-card
+                    template: remote_button_icon
+                    variables:
+                      - remote: remote.elrond
+                      - icon: mdi:arrow-left
+                      - tap_command: BACK
+                      - hold_command: BACK
+                      - hold_secs: 0.5
+                  - type: custom:decluttering-card
+                    template: remote_button_empty
+                  - type: custom:decluttering-card
+                    template: remote_button_icon
+                    variables:
+                      - remote: remote.elrond
+                      - icon: mdi:arrow-up-bold
+                      - tap_command: DPAD_UP
+                  - type: custom:decluttering-card
+                    template: remote_button_empty
+                  - type: custom:decluttering-card
+                    template: remote_button_icon
+                    variables:
+                      - remote: remote.elrond
+                      - icon: mdi:home
+                      - tap_command: HOME
+                      - hold_command: HOME
+                      - hold_secs: 0.5
+                  - type: custom:decluttering-card
+                    template: remote_button_icon
+                    variables:
+                      - remote: remote.elrond
+                      - icon: mdi:rewind
+                      - tap_command: MEDIA_PREVIOUS
+                      - hold_command: MEDIA_REWIND
+                  - type: custom:decluttering-card
+                    template: remote_button_icon
+                    variables:
+                      - remote: remote.elrond
+                      - icon: mdi:arrow-left-bold
+                      - tap_command: DPAD_LEFT
+                  - type: custom:decluttering-card
+                    template: remote_button_icon
+                    variables:
+                      - remote: remote.elrond
+                      - icon: mdi:circle
+                      - tap_command: DPAD_CENTER
+                      - hold_command: DPAD_CENTER
+                      - hold_secs: 0.5
+                  - type: custom:decluttering-card
+                    template: remote_button_icon
+                    variables:
+                      - remote: remote.elrond
+                      - icon: mdi:arrow-right-bold
+                      - tap_command: DPAD_RIGHT
+                  - type: custom:decluttering-card
+                    template: remote_button_icon
+                    variables:
+                      - remote: remote.elrond
+                      - icon: mdi:fast-forward
+                      - tap_command: MEDIA_NEXT
+                      - hold_command: MEDIA_FAST_FORWARD
+                  - type: custom:decluttering-card
+                    template: remote_button_icon
+                    variables:
+                      - remote: remote.elrond
+                      - icon: mdi:play-pause
+                      - tap_command: MEDIA_PLAY_PAUSE
+                      - hold_command: MEDIA_STOP
+                  - type: custom:decluttering-card
+                    template: remote_button_icon
+                    variables:
+                      - icon: mdi:volume-off
+                      - remote: remote.elrond
+                      - device: ampli
+                      - tap_command: MUTE
+                  - type: custom:decluttering-card
+                    template: remote_button_icon
+                    variables:
+                      - remote: remote.elrond
+                      - icon: mdi:arrow-down-bold
+                      - tap_command: DPAD_DOWN
+                  - type: custom:decluttering-card
+                    template: remote_button_icon
+                    variables:
+                      - icon: mdi:volume-medium
+                      - remote: remote.elrond
+                      - tap_command: VOLUME_DOWN
+                  - type: custom:decluttering-card
+                    template: remote_button_icon
+                    variables:
+                      - icon: mdi:volume-high
+                      - remote: remote.elrond
+                      - tap_command: VOLUME_UP
+      - type: grid
+        cards:
+          - title: AMPLI
             type: vertical-stack
             cards:
               - square: false
@@ -3821,6 +4092,15 @@ views:
                     template: remote_button_icon
                     variables:
                       - icon: mdi:hdmi-port
+                      - name: 1
+                      - remote: remote.sauron
+                      - device: ampli
+                      - tap_command: hdmi1
+                  - type: custom:decluttering-card
+                    template: remote_button_icon
+                    variables:
+                      - icon: mdi:hdmi-port
+                      - name: 2
                       - remote: remote.sauron
                       - device: ampli
                       - tap_command: hdmi2
@@ -3828,9 +4108,75 @@ views:
                     template: remote_button_icon
                     variables:
                       - icon: mdi:hdmi-port
+                      - name: 3
+                      - remote: remote.sauron
+                      - device: ampli
+                      - tap_command: hdmi3
+                  - type: custom:decluttering-card
+                    template: remote_button_icon
+                    variables:
+                      - icon: mdi:hdmi-port
+                      - name: 4
                       - remote: remote.sauron
                       - device: ampli
                       - tap_command: hdmi4
+              - square: false
+                columns: 6
+                type: grid
+                cards:
+                  - type: custom:decluttering-card
+                    template: remote_button_icon
+                    variables:
+                      - icon: mdi:audio-input-rca
+                      - name: 1
+                      - remote: remote.sauron
+                      - device: ampli
+                      - tap_command: av1
+                  - type: custom:decluttering-card
+                    template: remote_button_icon
+                    variables:
+                      - icon: mdi:audio-input-rca
+                      - name: 2
+                      - remote: remote.sauron
+                      - device: ampli
+                      - tap_command: av2
+                  - type: custom:decluttering-card
+                    template: remote_button_icon
+                    variables:
+                      - icon: mdi:audio-input-rca
+                      - name: 3
+                      - remote: remote.sauron
+                      - device: ampli
+                      - tap_command: av3
+                  - type: custom:decluttering-card
+                    template: remote_button_icon
+                    variables:
+                      - icon: mdi:audio-input-rca
+                      - name: 4
+                      - remote: remote.sauron
+                      - device: ampli
+                      - tap_command: av4
+                  - type: custom:decluttering-card
+                    template: remote_button_icon
+                    variables:
+                      - icon: mdi:audio-input-rca
+                      - name: 5
+                      - remote: remote.sauron
+                      - device: ampli
+                      - tap_command: av5
+                  - type: custom:decluttering-card
+                    template: remote_button_icon
+                    variables:
+                      - icon: mdi:audio-input-rca
+                      - name: 6
+                      - remote: remote.sauron
+                      - device: ampli
+                      - tap_command: av6
+      - type: grid
+        cards:
+          - title: HDX
+            type: vertical-stack
+            cards:
               - square: false
                 type: grid
                 columns: 5
@@ -3926,3 +4272,263 @@ views:
                       - remote: remote.sauron
                       - device: hdx
                       - tap_command: Stop
+  - title: Local Technique
+    path: local-technique
+    subview: false
+    cards: []
+    type: sections
+    sections:
+      - type: grid
+        cards:
+          - type: custom:mushroom-chips-card
+            chips:
+              - type: action
+                icon: mdi:home-outline
+                tap_action:
+                  action: navigate
+                  navigation_path: home
+                hold_action:
+                  action: none
+                double_tap_action:
+                  action: none
+              - type: template
+                content: Local Technique
+                tap_action: none
+              - type: menu
+            alignment: justify
+          - type: heading
+            heading: Battery
+            heading_style: title
+            icon: mdi:battery
+          - type: custom:auto-entities
+            show_empty: false
+            sort:
+              method: state
+              numeric: true
+              reverse: true
+            card:
+              type: custom:bar-card
+              positions:
+                icon: 'off'
+              height: 20px
+              min: 0
+              max: 100
+              severity:
+                - color: '#008000'
+                  from: 70
+                  to: 100
+                - color: '#ff9900'
+                  from: 41
+                  to: 70
+                - color: '#ff9900'
+                  from: 11
+                  to: 40
+                - color: '#ff0000'
+                  from: 0
+                  to: 39
+            filter:
+              include:
+                - entity_id: sensor.*_battery
+              exclude: null
+      - type: grid
+        cards:
+          - type: heading
+            icon: mdi:bluetooth
+            heading: Bluetooth
+          - type: custom:auto-entities
+            show_empty: false
+            sort:
+              method: state
+              numeric: true
+              reverse: true
+            card:
+              type: custom:bar-card
+              positions:
+                icon: 'off'
+              height: 20px
+              min: -100
+              max: 0
+              severity:
+                - color: '#cc0000'
+                  from: -100
+                  to: -70
+                - color: '#914900'
+                  from: -69
+                  to: -63
+                - color: '#cc6600'
+                  from: -62
+                  to: -47
+                - color: '#009900'
+                  from: -46
+                  to: 0
+            filter:
+              include:
+                - entity_id: sensor.*_signal_strength
+              exclude: null
+      - type: grid
+        cards:
+          - type: heading
+            heading: Température
+            icon: mdi:thermometer
+          - type: custom:auto-entities
+            show_empty: false
+            sort:
+              method: state
+              numeric: true
+              reverse: true
+            card:
+              type: custom:bar-card
+              positions:
+                icon: 'off'
+              height: 20px
+              min: 0
+              max: 30
+              severity:
+                - color: blue
+                  from: 0
+                  to: 15
+                - color: green
+                  from: 16
+                  to: 22
+                - color: orange
+                  from: 22
+                  to: 26.99
+                - color: red
+                  from: 27
+                  to: 99
+            filter:
+              include:
+                - entity_id: sensor.*_temperature
+              exclude:
+                - entity_id: sensor.system_monitor_processor_temperature
+                - entity_id: sensor.bambulab_*
+      - type: grid
+        cards:
+          - type: heading
+            heading: Humidité
+            icon: mdi:water
+          - type: custom:auto-entities
+            show_empty: false
+            sort:
+              method: state
+              numeric: true
+              reverse: true
+            card:
+              type: custom:bar-card
+              positions:
+                icon: 'off'
+              height: 20px
+              min: 0
+              max: 100
+              severity:
+                - color: red
+                  from: 0
+                  to: 30
+                - color: orange
+                  from: 31
+                  to: 40
+                - color: green
+                  from: 41
+                  to: 79
+                - color: blue
+                  from: 80
+                  to: 100
+            filter:
+              include:
+                - entity_id: sensor.*_humidity
+              exclude:
+                - entity_id: sensor.system_monitor_processor_temperature
+      - type: grid
+        cards:
+          - type: heading
+            heading: Wifi
+            heading_style: title
+            icon: mdi:wifi
+          - type: custom:auto-entities
+            show_empty: false
+            sort:
+              method: state
+              numeric: true
+              reverse: true
+            card:
+              type: custom:bar-card
+              positions:
+                icon: 'off'
+              height: 20px
+              min: -100
+              max: 0
+              severity:
+                - color: '#cc0000'
+                  from: -100
+                  to: -70
+                - color: '#914900'
+                  from: -69
+                  to: -63
+                - color: '#cc6600'
+                  from: -62
+                  to: -47
+                - color: '#009900'
+                  from: -46
+                  to: 0
+            filter:
+              include:
+                - entity_id: sensor.*_wifi_signal
+                - entity_id: sensor.*_rssi
+      - type: grid
+        cards:
+          - type: heading
+            heading: Power consumption
+            heading_style: title
+            icon: mdi:lightning-bolt
+          - type: custom:auto-entities
+            show_empty: false
+            sort:
+              method: state
+              numeric: true
+              reverse: true
+            card:
+              type: custom:bar-card
+              positions:
+                icon: 'off'
+              height: 20px
+              min: 0
+              max: 1000
+            severity:
+              - color: green
+                from: 0
+                to: 100
+              - color: '#ff9900'
+                from: 101
+                to: 200
+              - color: '#ff6600'
+                from: 201
+                to: 500
+              - color: red
+                from: 501
+                to: 1000
+            filter:
+              include:
+                - label: Power Consumption
+      - type: grid
+        cards:
+          - type: heading
+            heading: Raspberry Pi
+            heading_style: title
+            icon: mdi:raspberry-pi
+          - type: custom:auto-entities
+            show_empty: false
+            sort:
+              method: state
+              numeric: false
+              reverse: false
+              ip: false
+            card:
+              type: entities
+              state_color: false
+              show_header_toggle: false
+            filter:
+              include:
+                - entity_id: sensor.system_monitor_*
+              exclude: null
+    max_columns: 4
+    icon: ''
