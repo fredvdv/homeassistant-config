@@ -26,3 +26,19 @@ sensor:
         0
       {% endif %}
     icon: mdi:timer-outline
+
+  - name: "Electricity True Surplus"
+    unique_id: electricity_true_surplus
+    unit_of_measurement: "kW"
+    state_class: measurement
+    device_class: power
+    state: >
+      {% set current_charging = states('sensor.delta_2_max_0868_ac_in_power') | float(0) / 1000 %}
+      {% set measured_surplus = states('sensor.electricity_surplus') | float(0) %}
+      {{ (measured_surplus + current_charging) | round(3) }}
+    icon: >
+      {% if this.state | float(0) > 0 %}
+        mdi:solar-power-variant
+      {% else %}
+        mdi:transmission-tower-import
+      {% endif %}
