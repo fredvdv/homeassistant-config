@@ -10,3 +10,14 @@ radio_poweron:
       data:
         device: ampli
         command: Power
+    - delay:
+        hours: 0
+        minutes: 0
+        seconds: 10
+        milliseconds: 0
+    - service: remote.send_command
+      target:
+        entity_id: remote.sauron
+      data:
+        device: ampli
+        command: av1
