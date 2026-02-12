@@ -1,0 +1,127 @@
+test:
+  sequence:
+  - action: remote.turn_on
+    target:
+      entity_id: remote.artemis
+    data:
+      activity: com.netflix.ninja
+  - action: script.ampli_power_on
+  - delay: 5
+  - target:
+      entity_id: remote.sauron
+    data:
+      device: ampli
+      command: av1
+    action: remote.send_command
+  alias: Test
+  description: ''
+'1768603759967':
+  sequence:
+  - action: remote.turn_on
+    target:
+      entity_id: remote.artemis
+    data:
+      activity: com.netflix.ninja
+  - action: script.ampli_power_on
+  - delay: 5
+  - target:
+      entity_id: remote.sauron
+    data:
+      device: ampli
+      command: av1
+    action: remote.send_command
+  alias: Test
+  description: ''
+'1768605242436':
+  sequence:
+  - if:
+    - condition: state
+      entity_id: input_boolean.ampli_power
+      state:
+      - 'off'
+    then:
+    - action: script.ampli_power_on
+      metadata: {}
+      data: {}
+    - delay:
+        hours: 0
+        minutes: 0
+        seconds: 5
+        milliseconds: 0
+  - action: remote.turn_on
+    metadata: {}
+    data:
+      activity: com.netflix.ninja
+    target:
+      entity_id: remote.artemis
+  - action: remote.send_command
+    metadata: {}
+    data:
+      device: ampli
+      command: av1
+    target:
+      entity_id: remote.sauron
+  alias: TEST
+  description: ''
+'1768605246624':
+  sequence:
+  - if:
+    - condition: state
+      entity_id: input_boolean.ampli_power
+      state:
+      - 'off'
+    then:
+    - action: script.ampli_power_on
+      metadata: {}
+      data: {}
+    - delay:
+        hours: 0
+        minutes: 0
+        seconds: 5
+        milliseconds: 0
+  - action: remote.turn_on
+    metadata: {}
+    data:
+      activity: com.netflix.ninja
+    target:
+      entity_id: remote.artemis
+  - action: remote.send_command
+    metadata: {}
+    data:
+      device: ampli
+      command: av1
+    target:
+      entity_id: remote.sauron
+  alias: TEST
+  description: ''
+'1768605247240':
+  sequence:
+  - if:
+    - condition: state
+      entity_id: input_boolean.ampli_power
+      state:
+      - 'off'
+    then:
+    - action: script.ampli_power_on
+      metadata: {}
+      data: {}
+    - delay:
+        hours: 0
+        minutes: 0
+        seconds: 5
+        milliseconds: 0
+  - action: remote.turn_on
+    metadata: {}
+    data:
+      activity: com.netflix.ninja
+    target:
+      entity_id: remote.artemis
+  - action: remote.send_command
+    metadata: {}
+    data:
+      device: ampli
+      command: av1
+    target:
+      entity_id: remote.sauron
+  alias: TEST
+  description: ''
