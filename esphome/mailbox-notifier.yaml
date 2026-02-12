@@ -1,0 +1,84 @@
+esphome:
+  name: mailbox-notifier
+  friendly_name: Mailbox Notifier
+
+esp32:
+  board: esp32dev
+  framework:
+    type: esp-idf
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  encryption:
+    key: "JuELjNNb6d8vS1avcrqUO75Ijl+3SyfY9Mq86tYIJHo="
+
+ota:
+  - platform: esphome
+    password: "d8cf814656c38cc307d8d8715e07ee64"
+
+wifi:
+  ssid: !secret wifi_iot_ssid
+  password: !secret wifi_iot_password
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Esphome-Mailbox-Notifier"
+    password: "DWPoBniKYZqr"
+
+captive_portal:
+
+# ── Deep Sleep ───────────────────────────────────────────────
+# The ESP32 sleeps until the TCRT5000 pulls GPIO 13 LOW,
+# then stays awake just long enough to report, and sleeps again.
+
+deep_sleep:
+  id: deep_sleep_control
+  run_duration: 10s        # stay awake 10s to connect + publish
+  wakeup_pin:
+    number: GPIO13
+    inverted: true          # TCRT5000 D0 goes LOW on detection
+    allow_other_uses: true  # shared with the binary_sensor below
+
+# ── Sensor: Mail Detected ────────────────────────────────────
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: GPIO13
+      mode: INPUT_PULLUP
+      inverted: true        # LOW = mail detected → report as ON
+      allow_other_uses: true
+    name: "Mail Detected"
+    device_class: occupancy
+    icon: "mdi:mailbox"
+    filters:
+      - delayed_on: 50ms   # debounce — ignore very short glitches
+
+  # Expose a virtual "reset" button so you can clear the state from HA
+  # (or use an automation — see README)
+
+# ── Optional: Battery Voltage Monitoring ─────────────────────
+# If you wire a voltage divider from the battery to GPIO 35:
+#   Battery+ → 100kΩ → GPIO35 → 100kΩ → GND
+# This lets you monitor battery level in Home Assistant.
+
+# sensor:
+#   - platform: adc
+#     pin: GPIO35
+#     name: "Mailbox Battery Voltage"
+#     update_interval: never   # only read on wake
+#     attenuation: 11db
+#     filters:
+#       - multiply: 2.0       # voltage divider ratio
+#     unit_of_measurement: "V"
+#     device_class: voltage
+#     icon: "mdi:battery"
+
+# ── Optional: Wi-Fi Signal Strength ─────────────────────────
+sensor:
+  - platform: wifi_signal
+    name: "Mailbox Wi-Fi Signal"
+    update_interval: 10s    # only matters during the brief wake window
+    icon: "mdi:wifi"
