@@ -1,0 +1,17 @@
+radio_lnradio:
+  alias: "Radio LN Radio"
+  sequence:
+    - service: media_player.turn_on
+      target:
+        entity_id: media_player.lyrion
+    - action: media_player.play_media
+      target:
+        entity_id:
+          - media_player.lyrion
+      data:
+        media:
+          media_content_id: 1a86ce86.2
+          media_content_type: favorite
+    - service: script.ampli_power_on
+      data:
+        input: hdmi2

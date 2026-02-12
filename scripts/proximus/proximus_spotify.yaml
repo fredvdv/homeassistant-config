@@ -1,0 +1,19 @@
+proximus_spotify:
+  alias: "Spotify sur Proximus"
+  sequence:
+  - action: script.ampli_power_on
+  - action: media_player.media_stop
+    target:
+      entity_id: media_player.lyrion
+  - action: remote.turn_on
+    data:
+      activity: com.spotify.tv.android
+    target:
+      entity_id: remote.artemis
+  - action: remote.send_command
+    data:
+      device: ampli
+      command: av1
+    target:
+      entity_id: remote.sauron
+

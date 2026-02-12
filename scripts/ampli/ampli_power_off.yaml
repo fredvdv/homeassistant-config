@@ -1,0 +1,15 @@
+ampli_power_off:
+  alias: "Ampli Power Off"
+  sequence:
+    - condition: state
+      entity_id: input_boolean.ampli_power
+      state: "on"
+    - service: remote.send_command
+      target:
+        entity_id: remote.sauron
+      data:
+        device: ampli
+        command: Power
+    - service: input_boolean.turn_off
+      target:
+        entity_id: input_boolean.ampli_power

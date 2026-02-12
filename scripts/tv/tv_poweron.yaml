@@ -1,23 +1,19 @@
-radio_poweron:
-  alias: "Radio Power On"
+tv_poweron:
+  alias: "TV Power On"
   sequence:
     - service: remote.turn_on
       target:
         entity_id: remote.artemis
-    - service: remote.send_command
+    - service: remote.turn_on
       target:
-        entity_id: remote.sauron
-      data:
-        device: ampli
-        command: Power
+        entity_id: remote.elrond
+    - service: script.ampli_power_on
     - delay:
-        hours: 0
-        minutes: 0
         seconds: 10
-        milliseconds: 0
     - service: remote.send_command
       target:
         entity_id: remote.sauron
       data:
         device: ampli
         command: av1
+

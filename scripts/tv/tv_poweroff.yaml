@@ -4,12 +4,10 @@ tv_poweroff:
     - service: remote.turn_off
       target:
         entity_id: remote.artemis
+    - service: media_player.media_pause
+      target:
+        entity_id: media_player.lyrion
     - service: remote.turn_off
       target:
         entity_id: remote.elrond
-    - service: remote.send_command
-      target:
-        entity_id: remote.sauron
-      data:
-        device: ampli
-        command: Power
+    - service: script.ampli_power_off

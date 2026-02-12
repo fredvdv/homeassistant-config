@@ -1,8 +1,9 @@
-ampli_power:
+ampli_mute:
+    alias: "Ampli Volume Up"
     sequence:
       - service: remote.send_command
         target:
           entity_id: remote.sauron
         data:
           device: ampli
-          command: Power
+          command: Mute

@@ -1,0 +1,14 @@
+ampli_volume_up_5x:
+    alias: "Ampli Volume Up 5x"
+    sequence:
+      - repeat:
+          count: 5
+          sequence:
+            - service: remote.send_command
+              target:
+                entity_id: remote.sauron
+              data:
+                device: ampli
+                command: Volume Up
+            - delay:
+                milliseconds: 500

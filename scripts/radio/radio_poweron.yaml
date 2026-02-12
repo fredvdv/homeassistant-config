@@ -1,0 +1,14 @@
+radio_poweron:
+  alias: "Radio Power On"
+  sequence:
+    - service: script.ampli_power_on
+    - service: media_player.turn_on
+      target:
+        entity_id: media_player.lyrion
+    - delay: 5
+    - service: remote.send_command
+      target:
+        entity_id: remote.sauron
+      data:
+        device: ampli
+        command: av1

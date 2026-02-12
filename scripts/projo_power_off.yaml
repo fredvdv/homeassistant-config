@@ -1,5 +1,0 @@
-projo_power_off:
-    sequence:
-      - service: remote.turn_off
-        target:
-          entity_id: remote.elrond

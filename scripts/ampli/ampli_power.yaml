@@ -1,0 +1,12 @@
+ampli_power:
+  alias: "Ampli Power Toggle"
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.sauron
+      data:
+        device: ampli
+        command: Power
+    - service: input_boolean.toggle
+      target:
+        entity_id: input_boolean.ampli_power
