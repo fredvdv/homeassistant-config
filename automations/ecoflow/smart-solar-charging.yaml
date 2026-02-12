@@ -1,18 +1,17 @@
 id: ecoflow_smart_solar_charging
 alias: "EcoFlow - Smart Solar Charging"
 description: "Charge EcoFlow Delta 2 Max based on solar surplus"
-mode: restart
+mode: single
+max_exceeded: silent
 trigger:
-  - platform: state
-    entity_id: sensor.electricity_true_surplus
-    id: surplus_changed
+  # Periodic power adjustment (main control loop)
   - platform: time_pattern
     minutes: "/5"
     id: periodic_check
   # Turn on switch after 1 minute of surplus
   - platform: numeric_state
     entity_id: sensor.electricity_surplus
-    above: 0
+    above: 0.2
     for:
       minutes: 1
     id: surplus_sustained
@@ -23,6 +22,15 @@ trigger:
     for:
       minutes: 5
     id: no_surplus_sustained
+  # React to battery full/critical
+  - platform: numeric_state
+    entity_id: sensor.delta_2_max_0868_battery_level
+    above: 98
+    id: battery_full
+  - platform: numeric_state
+    entity_id: sensor.delta_2_max_0868_battery_level
+    below: 15
+    id: battery_critical
 action:
   - choose:
       # CASE 1: Turn off if battery full
@@ -108,18 +116,24 @@ action:
               name: "EcoFlow Charging"
               message: "Stopped - No surplus for 5 minutes"
 
-      # CASE 5: Adjust charging power dynamically while running
+      # CASE 5: Adjust charging power on periodic check (every 5 min)
       - conditions:
+          - condition: trigger
+            id: periodic_check
           - condition: state
             entity_id: switch.ecoflow
             state: "on"
           - condition: numeric_state
             entity_id: sensor.delta_2_max_0868_battery_level
             below: 95
-          - condition: numeric_state
-            entity_id: sensor.electricity_true_surplus
-            above: 0
         sequence:
+          # Only adjust if difference > 150W to avoid oscillation
+          - condition: template
+            value_template: >
+              {% set true_surplus = states('sensor.electricity_true_surplus') | float(0) * 1000 %}
+              {% set target_power = [[((true_surplus * 0.8) | int), 200] | max, 2400] | min %}
+              {% set current_power = states('number.delta_2_max_0868_ac_charging_power') | float(0) %}
+              {{ (target_power - current_power) | abs > 150 }}
           - service: number.set_value
             target:
               entity_id: number.delta_2_max_0868_ac_charging_power
@@ -128,3 +142,7 @@ action:
                 {% set true_surplus = states('sensor.electricity_true_surplus') | float(0) * 1000 %}
                 {% set target_power = (true_surplus * 0.8) | int %}
                 {{ [[target_power, 200] | max, 2400] | min }}
+          - service: logbook.log
+            data:
+              name: "EcoFlow Charging"
+              message: "Adjusted to {{ [[((states('sensor.electricity_true_surplus') | float(0) * 1000 * 0.8) | int), 200] | max, 2400] | min }}W"
